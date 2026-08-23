@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#f4f0e8" />
+  <meta name="description" content="Los Verdiales — a private Marbella residence shaped around light, landscape and quiet luxury." />
+  <title>Los Verdiales — Marbella</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="/content/site.js" defer></script>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="nav" id="top">
+    <a class="brand" href="#top">LOS VERDIALES</a>
+    <nav><a href="#residence">Residence</a><a href="#interiors">Interiors</a><a href="#wellness">Wellness</a><a href="#contact">Private viewing</a></nav>
+    <button class="nav-toggle" aria-label="Open menu">Menu</button>
+  </header>
+  <main>
+    <section class="hero" id="hero">
+      <img id="heroImage" src="/assets/interior/interior-4.jpg" alt="Los Verdiales residence" />
+      <div class="hero-shade"></div>
+      <div class="hero-copy"><p class="eyebrow">Marbella · Spain</p><h1>Los Verdiales</h1><p class="hero-lede">A private residence shaped around light, landscape and quiet luxury.</p><a class="text-link light" href="#residence">Discover the residence <span>↘</span></a></div>
+      <div class="scroll-cue">Scroll</div>
+    </section>
+    <section class="intro section" id="residence">
+      <div class="section-kicker">01 · The residence</div>
+      <div class="intro-grid"><h2>Marbella living, edited down to what matters.</h2><div class="intro-copy"><p>Los Verdiales is conceived as a calm, highly crafted home: generous rooms, tactile natural materials and a seamless relationship between interior and garden.</p><p>Rather than relying on spectacle, the architecture is carried by proportion, daylight, stone, oak, bronze and carefully framed views.</p></div></div>
+    </section>
+    <section class="feature-grid section tight" id="interiors">
+      <article class="feature feature-wide reveal"><img src="/assets/interior/interior-4.jpg" alt="Main living room and kitchen" loading="lazy" /><div class="caption"><span>Living</span><strong>Open-plan living & kitchen</strong></div></article>
+      <article class="feature reveal"><img src="/assets/interior/interior-2.jpg" alt="Primary bedroom" loading="lazy" /><div class="caption"><span>Private suite</span><strong>Morning light, layered materials</strong></div></article>
+      <article class="feature reveal"><img src="/assets/interior/interior-5.jpg" alt="Primary bathroom" loading="lazy" /><div class="caption"><span>Bathroom</span><strong>Stone, brass and softened colour</strong></div></article>
+    </section>
+    <section class="statement section"><p class="section-kicker">02 · Material language</p><blockquote>“The luxury is in the restraint — pale stone, warm oak, bronze, linen and details that reward a closer look.”</blockquote><div class="material-row"><span>Natural stone</span><span>European oak</span><span>Dark bronze</span><span>Linen & bouclé</span><span>Hand-finished details</span></div></section>
+    <section class="cinematic section tight" id="wellness"><img src="/assets/interior/interior-7.jpg" alt="Indoor pool and wellness area" loading="lazy" /><div class="cinematic-copy"><p class="eyebrow">Wellness level</p><h2>A private retreat within the house.</h2><p>Indoor pool, relaxation zone and a dedicated training environment designed with the same material discipline as the main residence.</p></div></section>
+    <section class="split-story section"><div class="split-copy"><p class="section-kicker">03 · Leisure</p><h2>Built for evenings that extend.</h2><p>A separate entertainment room brings together a bar, wine display, billiards and relaxed seating — polished enough for guests, comfortable enough to use every day.</p></div><img src="/assets/interior/interior-6.jpg" alt="Games room and wine bar" loading="lazy" /></section>
+    <section class="gallery-section section" id="gallerySection" hidden><div class="gallery-head"><div><p class="section-kicker">04 · Exterior</p><h2>The house in its landscape.</h2></div><p>Exterior imagery can be updated independently without changing the design of the page.</p></div><div class="gallery" id="exteriorGallery"></div></section>
+    <section class="interior-strip section tight"><div class="strip-title"><span>Interior collection</span><span id="interiorCount">07 images</span></div><div class="strip" id="interiorStrip"></div></section>
+    <section class="contact section" id="contact"><div class="contact-copy"><p class="section-kicker">Private presentation</p><h2>Experience Los Verdiales privately.</h2><p>For availability, specifications and a private presentation of the residence, leave your details below.</p></div><form name="private-viewing" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html"><input type="hidden" name="form-name" value="private-viewing" /><p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p><label>Name<input required name="name" autocomplete="name" /></label><label>Email<input required type="email" name="email" autocomplete="email" /></label><label>Phone<input name="phone" autocomplete="tel" /></label><label class="full">Message<textarea name="message" rows="4" placeholder="I would like to receive more information about Los Verdiales."></textarea></label><button type="submit">Request private presentation</button></form></section>
+  </main>
+  <footer><a class="brand" href="#top">LOS VERDIALES</a><p>Marbella · Spain</p><p class="fine">Private residence presentation</p></footer>
+</body></html>
