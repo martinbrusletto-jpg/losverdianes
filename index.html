@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
+<script src="/content/copy.js" defer></script>
 <script src="/content/site.js" defer></script>
 <script src="/app.js" defer></script>
 </head>
@@ -17,16 +18,23 @@
 <header class="nav" id="top">
   <a class="brand" href="#top">Los Verdiales</a>
   <nav id="site-nav">
-    <a href="#residence">Residensen</a>
-    <a href="#interiors">Interiør</a>
-    <a href="#wellness">Velvære</a>
-    <a href="#contact">Visning</a>
+    <a href="#residence" data-i18n="nav.residence">Residensen</a>
+    <a href="#interiors" data-i18n="nav.interiors">Interiør</a>
+    <a href="#wellness" data-i18n="nav.wellness">Velvære</a>
+    <a href="#contact" data-i18n="nav.contact">Visning</a>
   </nav>
-  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Meny</button>
+  <div class="nav-end">
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" class="lang-switch-btn is-active" data-lang="no">NO</button>
+      <span class="lang-switch-sep" aria-hidden="true">|</span>
+      <button type="button" class="lang-switch-btn" data-lang="en">EN</button>
+    </div>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-i18n="nav.menu">Meny</button>
+  </div>
 </header>
 
 <main>
-  <section class="hero" aria-label="Kjøkken og stue">
+  <section class="hero" data-i18n-aria="hero.aria" aria-label="Kjøkken og stue">
     <video
       id="heroVideo"
       class="hero-media hero-video"
@@ -42,119 +50,112 @@
       id="heroStill"
       class="hero-media hero-still"
       src="/assets/photos/02-kitchen-living.png"
+      data-i18n-alt="hero.alt"
       alt="Åpent kjøkken og stue med øy, salvie lanterner og glass mot gårdsplassen"
     >
     <div class="hero-veil"></div>
     <div class="hero-copy">
-      <p>Marbella · Spania</p>
+      <p data-i18n="hero.location">Marbella · Spania</p>
       <h1>Los Verdiales</h1>
-      <span>Et stille hus mellom stein, lys og hage.</span>
-      <span class="hero-copy-en">A private world of light, stone and garden.</span>
+      <span data-i18n="hero.tagline">Et stille hus mellom stein, lys og hage.</span>
     </div>
   </section>
 
   <section class="opening" id="residence">
-    <p class="kicker">Residensen</p>
-    <h2>Noe man kjenner<br>før man forstår.</h2>
-    <p class="headline-en">Designed to be felt before it is understood.</p>
+    <p class="kicker" data-i18n="opening.kicker">Residensen</p>
+    <h2 data-i18n-html="opening.headline">Noe man kjenner<br>før man forstår.</h2>
     <div class="opening-copy">
-      <p>Los Verdiales er tenkt som én helhet — arkitektur, interiør og landskap i samme bevegelse. Rommene åpner seg mot hagen. Stein, eik, messing og lin gir varme og varighet.</p>
-      <p>Luksusen ligger i proporsjonene, håndverket og dagslyset. Huset er rolig med vilje.</p>
+      <p data-i18n="opening.p1">Los Verdiales er tenkt som én helhet — arkitektur, interiør og landskap i samme bevegelse. Rommene åpner seg mot hagen. Stein, eik, messing og lin gir varme og varighet.</p>
+      <p data-i18n="opening.p2">Luksusen ligger i proporsjonene, håndverket og dagslyset. Huset er rolig med vilje.</p>
     </div>
   </section>
 
   <section class="editorial" id="interiors">
     <article class="spread spread--reverse" id="bedroom">
       <div class="spread-copy">
-        <p class="kicker">Hovedsoverommet</p>
-        <h2>Et mykere tempo.</h2>
-        <p class="headline-en">A softer rhythm.</p>
-        <p>Hvit wingback, lag på lag med tekstiler og dempede lamper. Et rom som føles boende — ikke stylet.</p>
+        <p class="kicker" data-i18n="bedroom.kicker">Hovedsoverommet</p>
+        <h2 data-i18n="bedroom.headline">Et mykere tempo.</h2>
+        <p data-i18n="bedroom.body">Hvit wingback, lag på lag med tekstiler og dempede lamper. Et rom som føles boende — ikke stylet.</p>
       </div>
       <figure class="spread-media">
-        <img src="/assets/photos/01-bedroom.png" alt="Hovedsoverom med hvit wingback og dempede lamper" loading="lazy">
+        <img src="/assets/photos/01-bedroom.png" data-i18n-alt="bedroom.alt" alt="Hovedsoverom med hvit wingback og dempede lamper" loading="lazy">
       </figure>
     </article>
 
     <article class="spread" id="bathroom">
       <div class="spread-copy">
-        <p class="kicker">Bad</p>
-        <h2>Salvie, messing, ro.</h2>
-        <p class="headline-en">Sage, brass, and quiet ritual.</p>
-        <p>Frittstående badekar i dempet salvie. Riflet servant i varm messing. Jord og mineral — rolig, taktilt, uten hast.</p>
+        <p class="kicker" data-i18n="bathroom.kicker">Bad</p>
+        <h2 data-i18n="bathroom.headline">Salvie, messing, ro.</h2>
+        <p data-i18n="bathroom.body">Frittstående badekar i dempet salvie. Riflet servant i varm messing. Jord og mineral — rolig, taktilt, uten hast.</p>
       </div>
       <figure class="spread-media">
-        <img src="/assets/photos/03-bathroom.png" alt="Bad med salvie badekar og riflet messing servant" loading="lazy">
+        <img src="/assets/photos/03-bathroom.png" data-i18n-alt="bathroom.alt" alt="Bad med salvie badekar og riflet messing servant" loading="lazy">
       </figure>
     </article>
 
     <article class="spread spread--reverse" id="lounge">
       <div class="spread-copy">
-        <p class="kicker">Fritid</p>
-        <h2>Kvelder uten slutt.</h2>
-        <p class="headline-en">Evenings with no reason to end.</p>
-        <p>Bar, vinvegg, biljard og avslappet sittegruppe. Et eget rom på nedre plan — fortsatt i samme materialfortelling.</p>
+        <p class="kicker" data-i18n="lounge.kicker">Fritid</p>
+        <h2 data-i18n="lounge.headline">Kvelder uten slutt.</h2>
+        <p data-i18n="lounge.body">Bar, vinvegg, biljard og avslappet sittegruppe. Et eget rom på nedre plan — fortsatt i samme materialfortelling.</p>
       </div>
       <figure class="spread-media">
-        <img src="/assets/photos/04-lounge.png" alt="Lounge med bar, biljard og vinvegg" loading="lazy">
+        <img src="/assets/photos/04-lounge.png" data-i18n-alt="lounge.alt" alt="Lounge med bar, biljard og vinvegg" loading="lazy">
       </figure>
     </article>
 
     <article class="spread spread--full spread--dark" id="wellness">
       <figure class="spread-media spread-media--tall">
-        <img src="/assets/photos/05-pool-gym.png" alt="Innendørs basseng og treningsrom bak glass" loading="lazy">
+        <img src="/assets/photos/05-pool-gym.png" data-i18n-alt="wellness.alt" alt="Innendørs basseng og treningsrom bak glass" loading="lazy">
       </figure>
       <div class="spread-copy spread-copy--overlay">
-        <p class="kicker">Velvære</p>
-        <h2>Et tilfluktssted i huset.</h2>
-        <p class="headline-en">A retreat within the residence.</p>
-        <p>Basseng, treningsrom og spa bak glass — vann, lys og restitusjon.</p>
+        <p class="kicker" data-i18n="wellness.kicker">Velvære</p>
+        <h2 data-i18n="wellness.headline">Et tilfluktssted i huset.</h2>
+        <p data-i18n="wellness.body">Basseng, treningsrom og spa bak glass — vann, lys og restitusjon.</p>
       </div>
     </article>
 
     <article class="spread spread--full" id="dusk">
       <figure class="spread-media spread-media--wide">
-        <img src="/assets/photos/06-dusk-living.png" alt="Stue i skumring sett fra kjøkkenøya mot terrasse og peis" loading="lazy">
+        <img src="/assets/photos/06-dusk-living.png" data-i18n-alt="dusk.alt" alt="Stue i skumring sett fra kjøkkenøya mot terrasse og peis" loading="lazy">
       </figure>
       <div class="spread-copy spread-copy--inset">
-        <p class="kicker">Skumring</p>
-        <h2>Huset samler lyset.</h2>
-        <p class="headline-en">The house gathers its light.</p>
-        <p>Fra kjøkkenøya åpner stuen seg mot terrassen og peisen. Dagen legger seg i varme.</p>
+        <p class="kicker" data-i18n="dusk.kicker">Skumring</p>
+        <h2 data-i18n="dusk.headline">Huset samler lyset.</h2>
+        <p data-i18n="dusk.body">Fra kjøkkenøya åpner stuen seg mot terrassen og peisen. Dagen legger seg i varme.</p>
       </div>
     </article>
   </section>
 
   <section class="gallery-section" id="exterior" hidden>
     <div class="section-head">
-      <p class="kicker">Eksteriør</p>
-      <h2>Huset i landskapet.</h2>
+      <p class="kicker" data-i18n="exterior.kicker">Eksteriør</p>
+      <h2 data-i18n="exterior.headline">Huset i landskapet.</h2>
     </div>
     <div class="gallery" id="exteriorGallery"></div>
   </section>
 
   <section class="contact" id="contact">
     <div>
-      <p class="kicker">Privat presentasjon</p>
-      <h2>Los Verdiales<br>Marbella</h2>
-      <p>For spesifikasjoner, planer og privat visning — be om full presentasjon.</p>
-      <p class="headline-en">Request the full presentation for specifications, plans, and a private viewing.</p>
+      <p class="kicker" data-i18n="contact.kicker">Privat presentasjon</p>
+      <h2 data-i18n-html="contact.headline">Los Verdiales<br>Marbella</h2>
+      <p data-i18n="contact.body">For spesifikasjoner, planer og privat visning — be om full presentasjon.</p>
     </div>
     <form name="private-viewing" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
       <input type="hidden" name="form-name" value="private-viewing">
       <p class="hidden"><label>Leave empty <input name="bot-field"></label></p>
-      <label>Navn<input name="name" required></label>
-      <label>E-post<input name="email" type="email" required></label>
-      <label>Telefon<input name="phone"></label>
-      <label>Melding<textarea name="message" rows="3"></textarea></label>
-      <button type="submit">Be om presentasjon</button>
+      <label><span data-i18n="form.name">Navn</span><input name="name" required></label>
+      <label><span data-i18n="form.email">E-post</span><input name="email" type="email" required></label>
+      <label><span data-i18n="form.phone">Telefon</span><input name="phone"></label>
+      <label><span data-i18n="form.message">Melding</span><textarea name="message" rows="3"></textarea></label>
+      <button type="submit" data-i18n="form.submit">Be om presentasjon</button>
     </form>
   </section>
 </main>
 
 <footer>
   <span>Los Verdiales</span>
-  <span>Marbella · Spania</span>
+  <span data-i18n="footer.location">Marbella · Spania</span>
 </footer>
 </body>
 </html>
