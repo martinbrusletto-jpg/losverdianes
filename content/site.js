@@ -1,2 +1,13 @@
-window.LOS_VERDIALES={hero:"/assets/interior/interior-4.jpg",interiors:[{src:"/assets/interior/interior-4.jpg",label:"Living & kitchen"},{src:"/assets/interior/interior-3.jpg",label:"Living room"},{src:"/assets/interior/interior-2.jpg",label:"Primary suite — morning"},{src:"/assets/interior/interior-1.jpg",label:"Primary suite — evening"},{src:"/assets/interior/interior-5.jpg",label:"Primary bathroom"},{src:"/assets/interior/interior-6.jpg",label:"Leisure room"},{src:"/assets/interior/interior-7.jpg",label:"Wellness & pool"}],exterior:[]};
-// deployment refresh 2026-08-26
+window.LOS_VERDIALES = {
+  heroPoster: '/assets/photos/02-kitchen-living.jpg',
+  heroVideo: '/assets/video/kitchen.mp4',
+  photos: [
+    { src: '/assets/photos/01-bedroom.png', label: 'Hovedsoverom' },
+    { src: '/assets/photos/02-kitchen-living.jpg', label: 'Kjøkken & stue' },
+    { src: '/assets/photos/03-bathroom.png', label: 'Bad' },
+    { src: '/assets/photos/04-lounge.png', label: 'Lounge' },
+    { src: '/assets/photos/05-pool-gym.png', label: 'Basseng & gym' },
+    { src: '/assets/photos/06-dusk-living.png', label: 'Skumring' }
+  ],
+  exterior: []
+};
