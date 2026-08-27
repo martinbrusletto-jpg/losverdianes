@@ -63,6 +63,10 @@ if (heroVideo) {
   heroVideo.play().catch(() => {});
 }
 
+document.querySelectorAll('.video-chapter-media').forEach((video) => {
+  video.play().catch(() => {});
+});
+
 const gallery = document.querySelector('#exteriorGallery');
 const section = document.querySelector('#exterior');
 const exteriors = cfg.exterior || [];

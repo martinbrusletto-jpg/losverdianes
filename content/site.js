@@ -1,6 +1,8 @@
 window.LOS_VERDIALES = {
-  heroPoster: '/assets/photos/02-kitchen-living.png',
-  heroVideo: '/assets/video/kitchen.mp4',
+  heroPoster: '/assets/video/hero-curtains-poster.jpg',
+  heroVideo: '/assets/video/hero-curtains.mp4',
+  poolPoster: '/assets/video/pool-dusk-poster.jpg',
+  poolVideo: '/assets/video/pool-dusk.mp4',
   photos: [
     { src: '/assets/photos/01-bedroom.png', label: 'Hovedsoverom' },
     { src: '/assets/photos/02-kitchen-living.png', label: 'Kjøkken & stue' },

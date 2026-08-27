@@ -170,6 +170,7 @@ a { color: inherit; text-decoration: none; }
 .spread h2,
 .section-head h2,
 .contact h2,
+.video-chapter-copy h2,
 .page-thanks h1 {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
@@ -319,6 +320,61 @@ a { color: inherit; text-decoration: none; }
 .spread-copy--inset {
   padding: clamp(56px, 7vw, 96px) 8vw 0;
   max-width: 580px;
+}
+
+/* — Full-bleed video chapters — */
+.video-chapter {
+  position: relative;
+  height: min(100svh, 920px);
+  min-height: 560px;
+  overflow: hidden;
+  background: var(--dark);
+}
+
+.video-chapter-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.video-chapter-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.08) 0%,
+    rgba(0, 0, 0, 0.2) 45%,
+    rgba(0, 0, 0, 0.52) 100%
+  );
+}
+
+.video-chapter-copy {
+  position: absolute;
+  z-index: 2;
+  left: 7vw;
+  bottom: 9vh;
+  max-width: 520px;
+  color: #fff;
+}
+
+.video-chapter-copy .kicker {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.video-chapter-copy h2 {
+  font-size: clamp(46px, 5.5vw, 76px);
+  line-height: 0.96;
+  margin: 0 0 24px;
+}
+
+.video-chapter-copy p {
+  margin: 0;
+  max-width: 420px;
+  color: rgba(255, 255, 255, 0.82);
 }
 
 /* — Exterior gallery (optional) — */
@@ -545,6 +601,16 @@ footer {
   .spread--dark .spread-media::after { display: none; }
   .spread-copy--inset { padding: 36px 6vw 0; }
 
+  .video-chapter {
+    min-height: 480px;
+    height: 72svh;
+  }
+
+  .video-chapter-copy {
+    left: 6vw;
+    bottom: 7vh;
+  }
+
   .contact {
     grid-template-columns: 1fr;
     padding: 110px 6vw;
@@ -561,7 +627,8 @@ footer {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .hero-video { display: none; }
+  .hero-video,
+  .video-chapter-media { display: none; }
   .hero-still {
     opacity: 1;
     pointer-events: auto;
