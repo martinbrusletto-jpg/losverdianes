@@ -11,7 +11,23 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+#residence,
+#interiors,
+#kitchen,
+#bedroom,
+#bathroom,
+#lounge,
+#wellness,
+#dusk,
+#pool-dusk,
+#contact {
+  scroll-margin-top: 96px;
+}
 
 body {
   margin: 0;
@@ -146,7 +162,9 @@ a { color: inherit; text-decoration: none; }
   z-index: 3;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.06) 0%,
+    rgba(0, 0, 0, 0.32) 0%,
+    rgba(0, 0, 0, 0.14) 16%,
+    rgba(0, 0, 0, 0.06) 32%,
     rgba(0, 0, 0, 0.14) 50%,
     rgba(0, 0, 0, 0.38) 100%
   );
@@ -287,12 +305,16 @@ a { color: inherit; text-decoration: none; }
 }
 
 .spread-copy--overlay {
-  position: absolute;
-  z-index: 2;
-  left: 7vw;
-  bottom: 9vh;
   max-width: 520px;
   color: #fff;
+}
+
+.spread--dark .spread-media .spread-copy--overlay {
+  position: absolute;
+  z-index: 2;
+  left: clamp(24px, 6%, 96px);
+  bottom: clamp(20px, 8%, 72px);
+  max-width: min(520px, 88%);
 }
 
 .spread-copy--overlay .kicker { color: rgba(255, 255, 255, 0.7); }
@@ -308,10 +330,14 @@ a { color: inherit; text-decoration: none; }
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.06) 72%, transparent);
 }
 
-.spread--dark .spread-media { position: relative; }
+.spread--dark .spread-media {
+  position: relative;
+  overflow: hidden;
+}
 
 .spread-copy--inset {
   padding: clamp(56px, 7vw, 96px) 8vw 0;
@@ -613,11 +639,15 @@ footer {
 
   .spread--full { padding: 0 6vw; }
 
+  .spread--dark .spread-media { overflow: visible; }
+
+  .spread--dark .spread-media .spread-copy--overlay,
   .spread-copy--overlay {
     position: relative;
     left: auto;
     bottom: auto;
-    padding: 36px 6vw 0;
+    max-width: none;
+    padding: 36px 0 0;
     color: var(--ink);
   }
 
