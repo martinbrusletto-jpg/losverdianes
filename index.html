@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#ebe6dc">
 <meta name="description" content="Los Verdiales — en privat residens i Marbella.">
+<link rel="canonical" href="https://los-verdiales.netlify.app">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="/assets/video/hero-curtains-poster.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://los-verdiales.netlify.app">
+<meta property="og:title" content="Los Verdiales — Marbella">
+<meta property="og:description" content="Los Verdiales — en privat residens i Marbella.">
+<meta property="og:image" content="https://los-verdiales.netlify.app/assets/video/hero-curtains-poster.jpg">
 <title>Los Verdiales — Marbella</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,9 +33,9 @@
   </nav>
   <div class="nav-end">
     <div class="lang-switch" role="group" aria-label="Language">
-      <button type="button" class="lang-switch-btn is-active" data-lang="no">NO</button>
+      <button type="button" class="lang-switch-btn is-active" data-lang="no" aria-pressed="true">NO</button>
       <span class="lang-switch-sep" aria-hidden="true">|</span>
-      <button type="button" class="lang-switch-btn" data-lang="en">EN</button>
+      <button type="button" class="lang-switch-btn" data-lang="en" aria-pressed="false">EN</button>
     </div>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-i18n="nav.menu">Meny</button>
   </div>
@@ -51,7 +59,7 @@
       class="hero-media hero-still"
       src="/assets/video/hero-curtains-poster.jpg"
       data-i18n-alt="hero.alt"
-      alt="Åpent kjøkken og stue med øy, salvie lanterner og glass mot gårdsplassen"
+      alt="Åpent kjøkken og stue med gardiner i brisen ved glassdørene"
     >
     <div class="hero-veil"></div>
     <div class="hero-copy">
@@ -71,14 +79,25 @@
   </section>
 
   <section class="editorial" id="interiors">
+    <article class="spread spread--reverse" id="kitchen">
+      <div class="spread-copy">
+        <p class="kicker" data-i18n="kitchen.kicker">Kjøkken og stue</p>
+        <h2 data-i18n="kitchen.headline">Huset åpner seg her.</h2>
+        <p data-i18n="kitchen.body">Kjøkkenøya, stuen og hagen i én flukt. Salvie lanterner, eik og stein — rommet dagen samles i.</p>
+      </div>
+      <figure class="spread-media">
+        <img src="/assets/photos/02-kitchen-living.png" width="1672" height="941" data-i18n-alt="kitchen.alt" alt="Åpent kjøkken og stue med salvie lanterner, sofa og glass mot hagen" loading="lazy">
+      </figure>
+    </article>
+
     <article class="spread spread--reverse" id="bedroom">
       <div class="spread-copy">
         <p class="kicker" data-i18n="bedroom.kicker">Hovedsoverommet</p>
         <h2 data-i18n="bedroom.headline">Et mykere tempo.</h2>
-        <p data-i18n="bedroom.body">Hvit wingback, lag på lag med tekstiler og dempede lamper. Et rom som føles boende — ikke stylet.</p>
+        <p data-i18n="bedroom.body">Hvit wingback, lag på lag med tekstiler og dempede lamper. Et rom som føles bebodd — ikke stylet.</p>
       </div>
       <figure class="spread-media">
-        <img src="/assets/photos/01-bedroom.png" data-i18n-alt="bedroom.alt" alt="Hovedsoverom med hvit wingback og dempede lamper" loading="lazy">
+        <img src="/assets/photos/01-bedroom.png" width="1672" height="941" data-i18n-alt="bedroom.alt" alt="Hovedsoverom med hvit wingback og dempede lamper" loading="lazy">
       </figure>
     </article>
 
@@ -89,7 +108,7 @@
         <p data-i18n="bathroom.body">Frittstående badekar i dempet salvie. Riflet servant i varm messing. Jord og mineral — rolig, taktilt, uten hast.</p>
       </div>
       <figure class="spread-media">
-        <img src="/assets/photos/03-bathroom.png" data-i18n-alt="bathroom.alt" alt="Bad med salvie badekar og riflet messing servant" loading="lazy">
+        <img src="/assets/photos/03-bathroom.png" width="1456" height="1080" data-i18n-alt="bathroom.alt" alt="Bad med salvie badekar og riflet messing servant" loading="lazy">
       </figure>
     </article>
 
@@ -100,13 +119,13 @@
         <p data-i18n="lounge.body">Bar, vinvegg, biljard og avslappet sittegruppe. Et eget rom på nedre plan — fortsatt i samme materialfortelling.</p>
       </div>
       <figure class="spread-media">
-        <img src="/assets/photos/04-lounge.png" data-i18n-alt="lounge.alt" alt="Lounge med bar, biljard og vinvegg" loading="lazy">
+        <img src="/assets/photos/04-lounge.png" width="1535" height="1024" data-i18n-alt="lounge.alt" alt="Lounge med bar, biljard og vinvegg" loading="lazy">
       </figure>
     </article>
 
-    <article class="spread spread--full spread--dark" id="pool-gym">
+    <article class="spread spread--full spread--dark" id="wellness">
       <figure class="spread-media spread-media--tall">
-        <img src="/assets/photos/05-pool-gym.png" data-i18n-alt="poolgym.alt" alt="Innendørs basseng og treningsrom bak glass" loading="lazy">
+        <img src="/assets/photos/05-pool-gym.png" width="1536" height="1024" data-i18n-alt="poolgym.alt" alt="Innendørs basseng og treningsrom bak glass" loading="lazy">
       </figure>
       <div class="spread-copy spread-copy--overlay">
         <p class="kicker" data-i18n="poolgym.kicker">Velvære</p>
@@ -117,7 +136,7 @@
 
     <article class="spread spread--full" id="dusk">
       <figure class="spread-media spread-media--wide">
-        <img src="/assets/photos/06-dusk-living.png" data-i18n-alt="dusk.alt" alt="Stue i skumring sett fra kjøkkenøya mot terrasse og peis" loading="lazy">
+        <img src="/assets/photos/06-dusk-living.png" width="1535" height="1024" data-i18n-alt="dusk.alt" alt="Stue i skumring sett fra kjøkkenøya mot terrasse og peis" loading="lazy">
       </figure>
       <div class="spread-copy spread-copy--inset">
         <p class="kicker" data-i18n="dusk.kicker">Skumring</p>
@@ -127,7 +146,7 @@
     </article>
   </section>
 
-  <section class="video-chapter" id="wellness" data-i18n-aria="pool.aria" aria-label="Basseng og kveld">
+  <section class="video-chapter" id="pool-dusk" data-i18n-aria="pool.aria" aria-label="Basseng og kveld">
     <video
       class="video-chapter-media"
       autoplay
@@ -138,6 +157,12 @@
     >
       <source src="/assets/video/pool-dusk.mp4" type="video/mp4">
     </video>
+    <img
+      class="video-chapter-still"
+      src="/assets/video/pool-dusk-poster.jpg"
+      alt=""
+      aria-hidden="true"
+    >
     <div class="video-chapter-veil"></div>
     <div class="video-chapter-copy">
       <p class="kicker" data-i18n="pool.kicker">Ute · Kveld</p>

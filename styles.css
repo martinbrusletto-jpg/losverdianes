@@ -126,16 +126,12 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero-still {
+  inset: 0;
   z-index: 1;
-  width: auto;
-  height: auto;
-  max-width: min(100%, 1672px);
-  max-height: min(100%, 941px);
-  object-fit: contain;
-  object-position: center;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
   transition: opacity 1.4s ease;
 }
 
@@ -340,6 +336,16 @@ a { color: inherit; text-decoration: none; }
   object-position: center;
 }
 
+.video-chapter-still {
+  display: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .video-chapter-veil {
   position: absolute;
   inset: 0;
@@ -459,6 +465,10 @@ a { color: inherit; text-decoration: none; }
 
 .contact textarea { resize: vertical; }
 
+.contact label:has(textarea) {
+  grid-column: 1 / -1;
+}
+
 .contact button {
   grid-column: 1 / -1;
   justify-self: start;
@@ -549,6 +559,21 @@ footer {
   color: var(--brass);
 }
 
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+}
+
+.brand:focus-visible,
+.nav nav a:focus-visible,
+.nav-toggle:focus-visible,
+.lang-switch-btn:focus-visible,
+.contact input:focus-visible,
+.contact textarea:focus-visible,
+.contact button:focus-visible {
+  outline-color: var(--brass);
+}
+
 /* — Mobile — */
 @media (max-width: 900px) {
   .nav nav {
@@ -629,7 +654,9 @@ footer {
   html { scroll-behavior: auto; }
   .hero-video,
   .video-chapter-media { display: none; }
-  .hero-still {
+  .hero-still,
+  .video-chapter-still {
+    display: block;
     opacity: 1;
     pointer-events: auto;
   }

@@ -38,7 +38,9 @@ function applyLang(next) {
   if (meta && description) meta.content = description;
 
   document.querySelectorAll('.lang-switch-btn').forEach((btn) => {
-    btn.classList.toggle('is-active', btn.dataset.lang === lang);
+    const active = btn.dataset.lang === lang;
+    btn.classList.toggle('is-active', active);
+    btn.setAttribute('aria-pressed', active ? 'true' : 'false');
   });
 
   const toggle = document.querySelector('.nav-toggle');
