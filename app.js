@@ -92,7 +92,19 @@ toggle?.addEventListener('click', () => {
 });
 
 document.querySelectorAll('.nav nav a').forEach((link) => {
-  link.addEventListener('click', () => {
+  link.addEventListener('click', (event) => {
+    const hash = link.getAttribute('href');
+    if (hash?.startsWith('#') && hash.length > 1) {
+      const target = document.querySelector(hash);
+      if (target) {
+        event.preventDefault();
+        const offset = 96;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        history.pushState(null, '', hash);
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    }
+
     nav?.classList.remove('open');
     menuOpen = false;
     toggle?.setAttribute('aria-expanded', 'false');
