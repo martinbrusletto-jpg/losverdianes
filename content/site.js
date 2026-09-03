@@ -11,5 +11,32 @@ window.LOS_VERDIALES = {
     { src: '/assets/photos/05-pool-gym.png', label: 'Basseng & gym' },
     { src: '/assets/photos/06-dusk-living.png', label: 'Skumring' }
   ],
-  exterior: []
+  exterior: [],
+  facts: [
+    { id: 'place', value: 'Marbella · Spania' },
+    { id: 'residence', value: 'Stein, eik, messing, lin' },
+    { id: 'wellness', value: 'Basseng, gym og spa' },
+    { id: 'plan', value: 'Interiør, nedre plan, hage' }
+  ],
+  plans: [
+    {
+      id: 'hovedplan',
+      labelKey: 'plans.tab.hovedplan',
+      src: '/assets/plans/01-hovedplan.png',
+      captionKey: 'plans.caption.hovedplan'
+    },
+    {
+      id: 'underetasje',
+      labelKey: 'plans.tab.underetasje',
+      src: '/assets/plans/02-underetasje.png',
+      captionKey: 'plans.caption.underetasje'
+    },
+    {
+      id: 'situasjon',
+      labelKey: 'plans.tab.situasjon',
+      src: '/assets/plans/03-situasjon.png',
+      captionKey: 'plans.caption.situasjon',
+      enabled: false
+    }
+  ]
 };

@@ -29,6 +29,7 @@
     <a href="#residence" data-i18n="nav.residence">Residensen</a>
     <a href="#interiors" data-i18n="nav.interiors">Interiør</a>
     <a href="#wellness" data-i18n="nav.wellness">Velvære</a>
+    <a href="#plans" data-i18n="nav.plans">Planer</a>
     <a href="#contact" data-i18n="nav.contact">Visning</a>
   </nav>
   <div class="nav-end">
@@ -66,6 +67,10 @@
       <p data-i18n="hero.location">Marbella · Spania</p>
       <h1>Los Verdiales</h1>
       <span data-i18n="hero.tagline">Et stille hus mellom stein, lys og hage.</span>
+      <div class="hero-cta">
+        <a href="#plans" class="hero-cta-link" data-i18n="hero.cta.plans">Se plantegninger</a>
+        <a href="#contact" class="hero-cta-link" data-i18n="hero.cta.viewing">Be om visning</a>
+      </div>
     </div>
   </section>
 
@@ -77,6 +82,8 @@
       <p data-i18n="opening.p2">Luksusen ligger i proporsjonene, håndverket og dagslyset. Huset er rolig med vilje.</p>
     </div>
   </section>
+
+  <div class="facts-band" id="factsBand" aria-label="Nøkkelfakta"></div>
 
   <section class="editorial" id="interiors">
     <article class="spread spread--reverse" id="kitchen">
@@ -171,6 +178,45 @@
     </div>
   </section>
 
+  <section class="place" id="place">
+    <p class="kicker" data-i18n="place.kicker">Marbella</p>
+    <h2 data-i18n="place.headline">Ro uten å være langt unna.</h2>
+    <div class="place-copy">
+      <p data-i18n="place.p1">Los Verdiales ligger i et rolig hjørne av Marbella — nær kysten, men skjermet av hage og stein. Dagen kan være stille her; kvelden samler lyset innover.</p>
+      <p data-i18n="place.p2">Huset er tenkt for dem som vil ha nærhet til Middelhavet uten å bo i støy. Ingen brochure — bare et sted som puster rolig.</p>
+    </div>
+  </section>
+
+  <section class="plans" id="plans">
+    <div class="plans-inner">
+      <header class="plans-header">
+        <p class="kicker" data-i18n="plans.kicker">Plantegninger</p>
+        <h2 data-i18n="plans.headline">Plantegninger</h2>
+      </header>
+
+      <div class="plans-gate" id="plansGate">
+        <p class="plans-gate-copy" data-i18n="plans.gate.body">Plantegninger deles med dem som vurderer en privat visning. Legg inn e-post for å åpne.</p>
+        <form class="plans-form" id="plansForm" novalidate>
+          <label>
+            <span data-i18n="plans.form.name">Navn (valgfritt)</span>
+            <input type="text" name="name" autocomplete="name">
+          </label>
+          <label>
+            <span data-i18n="plans.form.email">E-post</span>
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+          <button type="submit" data-i18n="plans.form.submit">Åpne plantegninger</button>
+        </form>
+        <p class="plans-error hidden" id="plansError" role="alert" data-i18n="plans.form.error">Noe gikk galt. Prøv igjen, eller be om visning under.</p>
+      </div>
+
+      <div class="plans-viewer hidden" id="plansViewer" aria-hidden="true">
+        <div class="plans-tabs" id="plansTabs" role="tablist"></div>
+        <div class="plans-panels" id="plansPanels"></div>
+      </div>
+    </div>
+  </section>
+
   <section class="gallery-section" id="exterior" hidden>
     <div class="section-head">
       <p class="kicker" data-i18n="exterior.kicker">Eksteriør</p>
@@ -184,6 +230,7 @@
       <p class="kicker" data-i18n="contact.kicker">Privat presentasjon</p>
       <h2 data-i18n-html="contact.headline">Los Verdiales<br>Marbella</h2>
       <p data-i18n="contact.body">For spesifikasjoner, planer og privat visning — be om full presentasjon.</p>
+      <p class="contact-note"><a href="#plans" class="text-link" data-i18n="contact.plansNote">Plantegninger er også tilgjengelig via e-post ved Planer.</a></p>
     </div>
     <form name="private-viewing" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
       <input type="hidden" name="form-name" value="private-viewing">
@@ -197,9 +244,24 @@
   </section>
 </main>
 
+<form name="floor-plans" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="floor-plans">
+  <input name="name">
+  <input name="email">
+  <p><label>Leave empty <input name="bot-field"></label></p>
+</form>
+
+<div class="plan-lightbox hidden" id="planLightbox" role="dialog" aria-modal="true" aria-label="Plantegning">
+  <button type="button" class="plan-lightbox-close" id="planLightboxClose" data-i18n="plans.lightbox.close">Lukk</button>
+  <img id="planLightboxImg" alt="">
+</div>
+
 <footer>
-  <span>Los Verdiales</span>
-  <span data-i18n="footer.location">Marbella · Spania</span>
+  <span data-i18n="footer.brand">Los Verdiales · Marbella · Spania</span>
+  <nav class="footer-nav" aria-label="Footer">
+    <a href="#plans" data-i18n="footer.plans">Plantegninger</a>
+    <a href="#contact" data-i18n="footer.contact">Visning</a>
+  </nav>
 </footer>
 </body>
 </html>
