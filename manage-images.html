@@ -1,4 +1,29 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/styles.css"><title>Exterior images — Los Verdiales</title></head><body><main class="section" style="max-width:980px;margin:auto;min-height:100vh"><p class="section-kicker">Los Verdiales · owner tools</p><h1 style="font-family:'Libre Caslon Display',serif;font-size:clamp(54px,7vw,96px);font-weight:400;line-height:.95;margin:0 0 34px">Exterior image manager</h1><p style="font-size:19px;line-height:1.7;max-width:760px">Exterior photography is separated from the rest of the presentation. You can add, remove or reorder exterior images without touching the page layout.</p><div style="margin:50px 0;padding:30px;border-top:1px solid rgba(23,24,20,.15);border-bottom:1px solid rgba(23,24,20,.15)"><p><strong>Fastest method</strong></p><p style="line-height:1.7">Open the image list below. Under <code>exterior:[ ]</code>, paste one line per photo. Use either a public image URL or a file path after uploading the image to the repository.</p><pre style="padding:22px;background:#e7e0d4;overflow:auto;line-height:1.7">exterior:[
-  {src:"https://.../pool.jpg",label:"Pool terrace"},
-  {src:"https://.../facade.jpg",label:"Garden facade"}
-]</pre><p style="color:#706d64">Delete a line to remove a photo. Move a line up or down to change its position. If the list is empty, the exterior section disappears automatically.</p></div><div style="display:flex;gap:18px;flex-wrap:wrap"><a class="button" href="https://github.com/martinbrusletto-jpg/losverdianes/edit/main/content/site.js">Edit exterior images</a><a class="text-link" href="/">Back to Los Verdiales</a></div></main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/styles.css">
+<title>Exterior images — Los Verdiales</title>
+</head>
+<body>
+<main class="opening" style="min-height:100svh">
+  <p class="kicker">Los Verdiales · owner tools</p>
+  <h2 style="font-size:clamp(48px,7vw,88px);line-height:0.95;margin:0 0 32px">Exterior image manager</h2>
+  <div class="opening-copy" style="width:100%;grid-template-columns:1fr;margin-top:0">
+    <p>Exterior photography is managed separately from the editorial interior presentation. Add, remove, or reorder exterior images in <code>content/site.js</code> under <code>exterior:[ ]</code>.</p>
+    <p>Each entry needs a <code>src</code> (URL or path) and optional <code>label</code>. If the list is empty, the exterior section stays hidden.</p>
+  </div>
+  <pre style="padding:22px;background:#ded7ca;overflow:auto;line-height:1.7;margin:40px 0;font-size:14px">exterior:[
+  {src:"/assets/exterior/pool-terrace.jpg",label:"Pool terrace"},
+  {src:"https://example.com/facade.jpg",label:"Garden facade"}
+]</pre>
+  <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:32px">
+    <a class="button" href="https://github.com/martinbrusletto-jpg/losverdianes/edit/main/content/site.js">Edit exterior images</a>
+    <a class="text-link" href="/">Back to Los Verdiales</a>
+  </div>
+  <p style="margin-top:48px;color:var(--muted);font-size:14px">Hero video: <code>assets/video/hero-curtains.mp4</code> · Pool chapter: <code>assets/video/pool-dusk.mp4</code></p>
+</main>
+</body>
+</html>

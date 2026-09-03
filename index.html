@@ -1,39 +1,267 @@
 <!doctype html>
-<html lang="en">
+<html lang="no">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f3f0e9">
-<meta name="description" content="Los Verdiales — a private residence in Marbella.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ebe6dc">
+<meta name="description" content="Los Verdiales — en privat residens i Marbella.">
+<link rel="canonical" href="https://los-verdiales.netlify.app">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="/assets/video/hero-curtains-poster.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://los-verdiales.netlify.app">
+<meta property="og:title" content="Los Verdiales — Marbella">
+<meta property="og:description" content="Los Verdiales — en privat residens i Marbella.">
+<meta property="og:image" content="https://los-verdiales.netlify.app/assets/video/hero-curtains-poster.jpg">
 <title>Los Verdiales — Marbella</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
-<script src="/content/site.js" defer></script><script src="/app.js" defer></script>
+<script src="/content/copy.js" defer></script>
+<script src="/content/site.js" defer></script>
+<script src="/app.js" defer></script>
 </head>
 <body>
-<header class="nav" id="top"><a class="brand" href="#top">LOS VERDIALES</a><nav><a href="#residence">Residence</a><a href="#interiors">Interiors</a><a href="#wellness">Wellness</a><a href="#contact">Private viewing</a></nav><button class="nav-toggle">Menu</button></header>
+<header class="nav" id="top">
+  <a class="brand" href="#top">Los Verdiales</a>
+  <nav id="site-nav">
+    <a href="#residence" data-i18n="nav.residence">Residensen</a>
+    <a href="#interiors" data-i18n="nav.interiors">Interiør</a>
+    <a href="#wellness" data-i18n="nav.wellness">Velvære</a>
+    <a href="#plans" data-i18n="nav.plans">Planer</a>
+    <a href="#contact" data-i18n="nav.contact">Visning</a>
+  </nav>
+  <div class="nav-end">
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" class="lang-switch-btn is-active" data-lang="no" aria-pressed="true">NO</button>
+      <span class="lang-switch-sep" aria-hidden="true">|</span>
+      <button type="button" class="lang-switch-btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-i18n="nav.menu">Meny</button>
+  </div>
+</header>
+
 <main>
-<section class="hero"><img id="heroImage" src="/assets/interior/interior-4.jpg" alt="Los Verdiales"><div class="veil"></div><div class="hero-copy"><p>Marbella · Spain</p><h1>Los Verdiales</h1><span>A private world of light, stone and quiet luxury.</span></div></section>
+  <section class="hero" data-i18n-aria="hero.aria" aria-label="Kjøkken og stue">
+    <video
+      id="heroVideo"
+      class="hero-media hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="/assets/video/hero-curtains-poster.jpg"
+    >
+      <source src="/assets/video/hero-curtains.mp4" type="video/mp4">
+    </video>
+    <img
+      id="heroStill"
+      class="hero-media hero-still"
+      src="/assets/video/hero-curtains-poster.jpg"
+      data-i18n-alt="hero.alt"
+      alt="Åpent kjøkken og stue med gardiner i brisen ved glassdørene"
+    >
+    <div class="hero-veil"></div>
+    <div class="hero-copy">
+      <p data-i18n="hero.location">Marbella · Spania</p>
+      <h1>Los Verdiales</h1>
+      <span data-i18n="hero.tagline">Et stille hus mellom stein, lys og hage.</span>
+      <div class="hero-cta">
+        <a href="#plans" class="hero-cta-link" data-i18n="hero.cta.plans">Se plantegninger</a>
+        <a href="#contact" class="hero-cta-link" data-i18n="hero.cta.viewing">Be om visning</a>
+      </div>
+    </div>
+  </section>
 
-<section class="opening" id="residence"><p class="kicker">The residence</p><h2>Designed to be felt<br>before it is understood.</h2><div class="opening-copy"><p>Los Verdiales is conceived as a complete private residence where architecture, interiors and landscape move as one. Generous rooms open towards the garden, while natural stone, oak, bronze and linen bring warmth and permanence.</p><p>The house is deliberately calm. The luxury is in proportion, craftsmanship, daylight and the way every space connects to the next.</p></div></section>
+  <section class="opening" id="residence">
+    <p class="kicker" data-i18n="opening.kicker">Residensen</p>
+    <h2 data-i18n-html="opening.headline">Noe man kjenner<br>før man forstår.</h2>
+    <div class="opening-copy">
+      <p data-i18n="opening.p1">Los Verdiales er tenkt som én helhet — arkitektur, interiør og landskap i samme bevegelse. Rommene åpner seg mot hagen. Stein, eik, messing og lin gir varme og varighet.</p>
+      <p data-i18n="opening.p2">Luksusen ligger i proporsjonene, håndverket og dagslyset. Huset er rolig med vilje.</p>
+    </div>
+  </section>
 
-<section class="full-image" id="interiors"><img src="/assets/interior/interior-4.jpg" alt="Living room and kitchen"><div class="image-note"><span>01</span><p>Living · Kitchen</p></div></section>
+  <div class="facts-band" id="factsBand" aria-label="Nøkkelfakta"></div>
 
-<section class="duo"><figure><img src="/assets/interior/interior-3.jpg" alt="Living room"><figcaption>Living spaces</figcaption></figure><figure><img src="/assets/interior/interior-2.jpg" alt="Primary suite"><figcaption>Primary suite · Morning</figcaption></figure></section>
+  <section class="editorial" id="interiors">
+    <article class="spread spread--reverse" id="kitchen">
+      <div class="spread-copy">
+        <p class="kicker" data-i18n="kitchen.kicker">Kjøkken og stue</p>
+        <h2 data-i18n="kitchen.headline">Huset åpner seg her.</h2>
+        <p data-i18n="kitchen.body">Kjøkkenøya, stuen og hagen i én flukt. Salvie lanterner, eik og stein — rommet dagen samles i.</p>
+      </div>
+      <figure class="spread-media">
+        <img src="/assets/photos/02-kitchen-living.png" width="1672" height="941" data-i18n-alt="kitchen.alt" alt="Åpent kjøkken og stue med salvie lanterner, sofa og glass mot hagen" loading="lazy">
+      </figure>
+    </article>
 
-<section class="quote"><p>Materiality</p><h2>Stone that feels cool underfoot. Oak that gains character with time. Bronze that catches the morning light.</h2></section>
+    <article class="spread spread--reverse" id="bedroom">
+      <div class="spread-copy">
+        <p class="kicker" data-i18n="bedroom.kicker">Hovedsoverommet</p>
+        <h2 data-i18n="bedroom.headline">Et mykere tempo.</h2>
+        <p data-i18n="bedroom.body">Hvit wingback, lag på lag med tekstiler og dempede lamper. Et rom som føles bebodd — ikke stylet.</p>
+      </div>
+      <figure class="spread-media">
+        <img src="/assets/photos/01-bedroom.png" width="1672" height="941" data-i18n-alt="bedroom.alt" alt="Hovedsoverom med hvit wingback og dempede lamper" loading="lazy">
+      </figure>
+    </article>
 
-<section class="story"><div class="story-copy"><p class="kicker">Private spaces</p><h2>A softer rhythm.</h2><p>The primary suite is intentionally quieter than the entertaining spaces. Layered textiles, tactile wall finishes and warm joinery create a room that feels settled rather than styled.</p></div><div class="story-images"><img src="/assets/interior/interior-1.jpg" alt="Primary suite evening"><img src="/assets/interior/interior-5.jpg" alt="Primary bathroom"></div></section>
+    <article class="spread" id="bathroom">
+      <div class="spread-copy">
+        <p class="kicker" data-i18n="bathroom.kicker">Bad</p>
+        <h2 data-i18n="bathroom.headline">Salvie, messing, ro.</h2>
+        <p data-i18n="bathroom.body">Frittstående badekar i dempet salvie. Riflet servant i varm messing. Jord og mineral — rolig, taktilt, uten hast.</p>
+      </div>
+      <figure class="spread-media">
+        <img src="/assets/photos/03-bathroom.png" width="1456" height="1080" data-i18n-alt="bathroom.alt" alt="Bad med salvie badekar og riflet messing servant" loading="lazy">
+      </figure>
+    </article>
 
-<section class="full-image dark" id="wellness"><img src="/assets/interior/interior-7.jpg" alt="Wellness and pool"><div class="overlay-copy"><p>Wellness level</p><h2>A retreat within the residence.</h2><span>Indoor pool · relaxation · training · spa</span></div></section>
+    <article class="spread spread--reverse" id="lounge">
+      <div class="spread-copy">
+        <p class="kicker" data-i18n="lounge.kicker">Fritid</p>
+        <h2 data-i18n="lounge.headline">Kvelder uten slutt.</h2>
+        <p data-i18n="lounge.body">Bar, vinvegg, biljard og avslappet sittegruppe. Et eget rom på nedre plan — fortsatt i samme materialfortelling.</p>
+      </div>
+      <figure class="spread-media">
+        <img src="/assets/photos/04-lounge.png" width="1535" height="1024" data-i18n-alt="lounge.alt" alt="Lounge med bar, biljard og vinvegg" loading="lazy">
+      </figure>
+    </article>
 
-<section class="leisure"><img src="/assets/interior/interior-6.jpg" alt="Wine lounge and games room"><div><p class="kicker">Leisure</p><h2>For evenings that have no reason to end.</h2><p>A private lounge with bar, wine display, billiards and relaxed seating gives the lower level its own character while remaining part of the same material language.</p></div></section>
+    <article class="spread spread--full spread--dark" id="wellness">
+      <figure class="spread-media spread-media--tall">
+        <img src="/assets/photos/05-pool-gym.png" width="1536" height="1024" data-i18n-alt="poolgym.alt" alt="Innendørs basseng og treningsrom bak glass" loading="lazy">
+        <div class="spread-copy spread-copy--overlay">
+          <p class="kicker" data-i18n="poolgym.kicker">Velvære</p>
+          <h2 data-i18n="poolgym.headline">Et tilfluktssted i huset.</h2>
+          <p data-i18n="poolgym.body">Basseng, treningsrom og spa bak glass — vann, lys og restitusjon.</p>
+        </div>
+      </figure>
+    </article>
 
-<section class="collection"><div class="collection-head"><p class="kicker">Interior collection</p><span id="interiorCount">07 images</span></div><div class="strip" id="interiorStrip"></div></section>
+    <article class="spread spread--full" id="dusk">
+      <figure class="spread-media spread-media--wide">
+        <img src="/assets/photos/06-dusk-living.png" width="1535" height="1024" data-i18n-alt="dusk.alt" alt="Stue i skumring sett fra kjøkkenøya mot terrasse og peis" loading="lazy">
+      </figure>
+      <div class="spread-copy spread-copy--inset">
+        <p class="kicker" data-i18n="dusk.kicker">Skumring</p>
+        <h2 data-i18n="dusk.headline">Huset samler lyset.</h2>
+        <p data-i18n="dusk.body">Fra kjøkkenøya åpner stuen seg mot terrassen og peisen. Dagen legger seg i varme.</p>
+      </div>
+    </article>
+  </section>
 
-<section class="gallery-section" id="exterior" hidden><div class="section-head"><p class="kicker">Exterior</p><h2>The house in its landscape.</h2></div><div class="gallery" id="exteriorGallery"></div></section>
+  <section class="video-chapter" id="pool-dusk" data-i18n-aria="pool.aria" aria-label="Basseng og kveld">
+    <video
+      class="video-chapter-media"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="/assets/video/pool-dusk-poster.jpg"
+    >
+      <source src="/assets/video/pool-dusk.mp4" type="video/mp4">
+    </video>
+    <img
+      class="video-chapter-still"
+      src="/assets/video/pool-dusk-poster.jpg"
+      alt=""
+      aria-hidden="true"
+    >
+    <div class="video-chapter-veil"></div>
+    <div class="video-chapter-copy">
+      <p class="kicker" data-i18n="pool.kicker">Ute · Kveld</p>
+      <h2 data-i18n="pool.headline">Kveldsro ved bassenget.</h2>
+      <p data-i18n="pool.body">Villaen i skumring. Turkis basseng, lounge og chevron-parasoller — kvelden faller over hagen.</p>
+    </div>
+  </section>
 
-<section class="contact" id="contact"><div><p class="kicker">Private presentation</p><h2>Los Verdiales<br>Marbella</h2><p>For specifications, plans, availability and a private viewing, request the full presentation.</p></div><form name="private-viewing" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html"><input type="hidden" name="form-name" value="private-viewing"><p class="hidden"><label>Leave empty <input name="bot-field"></label></p><label>Name<input name="name" required></label><label>Email<input name="email" type="email" required></label><label>Phone<input name="phone"></label><label>Message<textarea name="message" rows="3"></textarea></label><button type="submit">Request private presentation</button></form></section>
+  <section class="place" id="place">
+    <p class="kicker" data-i18n="place.kicker">Marbella</p>
+    <h2 data-i18n="place.headline">Ro uten å være langt unna.</h2>
+    <div class="place-copy">
+      <p data-i18n="place.p1">Los Verdiales ligger i et rolig hjørne av Marbella — nær kysten, men skjermet av hage og stein. Dagen kan være stille her; kvelden samler lyset innover.</p>
+      <p data-i18n="place.p2">Huset er tenkt for dem som vil ha nærhet til Middelhavet uten å bo i støy. Ingen brochure — bare et sted som puster rolig.</p>
+    </div>
+  </section>
+
+  <section class="plans" id="plans">
+    <div class="plans-inner">
+      <header class="plans-header">
+        <p class="kicker" data-i18n="plans.kicker">Privat materiale</p>
+        <h2 data-i18n="plans.headline">Plantegninger</h2>
+      </header>
+
+      <div class="plans-gate" id="plansGate">
+        <p class="plans-gate-copy" data-i18n="plans.gate.body">Plantegninger deles med dem som vurderer en privat visning. Legg inn e-post for å åpne.</p>
+        <form class="plans-form" id="plansForm" novalidate>
+          <label>
+            <span data-i18n="plans.form.name">Navn (valgfritt)</span>
+            <input type="text" name="name" autocomplete="name">
+          </label>
+          <label>
+            <span data-i18n="plans.form.email">E-post</span>
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+          <button type="submit" data-i18n="plans.form.submit">Åpne plantegninger</button>
+        </form>
+        <p class="plans-error hidden" id="plansError" role="alert" data-i18n="plans.form.error">Noe gikk galt. Prøv igjen, eller be om visning under.</p>
+      </div>
+
+      <div class="plans-viewer hidden" id="plansViewer" aria-hidden="true">
+        <div class="plans-tabs" id="plansTabs" role="tablist"></div>
+        <div class="plans-panels" id="plansPanels"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-section" id="exterior" hidden>
+    <div class="section-head">
+      <p class="kicker" data-i18n="exterior.kicker">Eksteriør</p>
+      <h2 data-i18n="exterior.headline">Huset i landskapet.</h2>
+    </div>
+    <div class="gallery" id="exteriorGallery"></div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div>
+      <p class="kicker" data-i18n="contact.kicker">Privat presentasjon</p>
+      <h2 data-i18n-html="contact.headline">Los Verdiales<br>Marbella</h2>
+      <p data-i18n="contact.body">For spesifikasjoner, planer og privat visning — be om full presentasjon.</p>
+      <p class="contact-note" data-i18n-html="contact.plansNote">Plantegninger åpnes med e-post under <a href="#plans">Planer</a>.</p>
+    </div>
+    <form name="private-viewing" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+      <input type="hidden" name="form-name" value="private-viewing">
+      <p class="hidden"><label>Leave empty <input name="bot-field"></label></p>
+      <label><span data-i18n="form.name">Navn</span><input name="name" required></label>
+      <label><span data-i18n="form.email">E-post</span><input name="email" type="email" required></label>
+      <label><span data-i18n="form.phone">Telefon</span><input name="phone"></label>
+      <label><span data-i18n="form.message">Melding</span><textarea name="message" rows="3"></textarea></label>
+      <button type="submit" data-i18n="form.submit">Be om presentasjon</button>
+    </form>
+  </section>
 </main>
-<footer><span>LOS VERDIALES</span><span>Marbella · Spain</span></footer>
-</body></html>
+
+<form name="floor-plans" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="floor-plans">
+  <input name="name">
+  <input name="email">
+  <p><label>Leave empty <input name="bot-field"></label></p>
+</form>
+
+<div class="plan-lightbox hidden" id="planLightbox" role="dialog" aria-modal="true" aria-label="Plantegning">
+  <button type="button" class="plan-lightbox-close" id="planLightboxClose" data-i18n="plans.lightbox.close">Lukk</button>
+  <img id="planLightboxImg" alt="">
+</div>
+
+<footer>
+  <span data-i18n="footer.brand">Los Verdiales · Marbella · Spania</span>
+  <nav class="footer-nav" aria-label="Footer">
+    <a href="#plans" data-i18n="footer.plans">Plantegninger</a>
+    <a href="#contact" data-i18n="footer.contact">Visning</a>
+  </nav>
+</footer>
+</body>
+</html>
