@@ -307,3 +307,25 @@ document.querySelectorAll('.nav nav a').forEach((link) => {
     if (toggle) toggle.textContent = t('nav.menu');
   });
 });
+
+function initNavTheme() {
+  const navEl = document.querySelector('.nav');
+  const darkZones = document.querySelectorAll('.hero, #wellness, #pool-dusk, .contact');
+  const visibleDark = new Set();
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) visibleDark.add(entry.target);
+      else visibleDark.delete(entry.target);
+    });
+    navEl?.classList.toggle('nav--paper', visibleDark.size === 0);
+  }, {
+    root: null,
+    rootMargin: '-80px 0px 0px 0px',
+    threshold: 0
+  });
+
+  darkZones.forEach((el) => observer.observe(el));
+}
+
+initNavTheme();
