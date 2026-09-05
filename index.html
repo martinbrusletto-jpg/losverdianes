@@ -1,39 +1,67 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f3f0e9">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#11110f">
 <meta name="description" content="Los Verdiales — a private residence in Marbella.">
 <title>Los Verdiales — Marbella</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Italiana&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
-<script src="/content/site.js" defer></script><script src="/app.js" defer></script>
+<script src="/app.js" defer></script>
 </head>
 <body>
-<header class="nav" id="top"><a class="brand" href="#top">LOS VERDIALES</a><nav><a href="#residence">Residence</a><a href="#interiors">Interiors</a><a href="#wellness">Wellness</a><a href="#contact">Private viewing</a></nav><button class="nav-toggle">Menu</button></header>
-<main>
-<section class="hero"><img id="heroImage" src="/assets/interior/interior-4.jpg" alt="Los Verdiales"><div class="veil"></div><div class="hero-copy"><p>Marbella · Spain</p><h1>Los Verdiales</h1><span>A private world of light, stone and quiet luxury.</span></div></section>
+<header class="nav" id="nav">
+  <a class="brand" href="#top"><span class="brand-mark">LV</span><span class="brand-name">Los Verdiales · Marbella</span></a>
+  <nav><a href="#residence">Residence</a><a href="#interiors">Interiors</a><a href="#wellness">Wellness</a><a href="#contact">Private viewing</a></nav>
+  <button class="nav-toggle" aria-label="Open menu">Menu</button>
+</header>
+<main id="top">
+  <section class="hero">
+    <img src="/assets/interior/interior-4.jpg" alt="Los Verdiales">
+    <div class="hero-copy">
+      <div><p class="eyebrow">Marbella · Spain</p><h1>Los Verdiales</h1></div>
+      <p class="hero-side">A private residence shaped by Mediterranean light, natural materials and a quieter idea of luxury.</p>
+    </div>
+    <span class="scroll-cue">Discover</span>
+  </section>
 
-<section class="opening" id="residence"><p class="kicker">The residence</p><h2>Designed to be felt<br>before it is understood.</h2><div class="opening-copy"><p>Los Verdiales is conceived as a complete private residence where architecture, interiors and landscape move as one. Generous rooms open towards the garden, while natural stone, oak, bronze and linen bring warmth and permanence.</p><p>The house is deliberately calm. The luxury is in proportion, craftsmanship, daylight and the way every space connects to the next.</p></div></section>
+  <section class="intro reveal" id="residence">
+    <div><p class="kicker">The residence</p><h2>A home designed to be felt before it is understood.</h2></div>
+    <div class="intro-copy"><p>Los Verdiales is conceived as a complete private world — architecture, interiors and landscape moving as one.</p><p>Natural stone, warm timber, bronze details and filtered daylight create a house that feels settled, tactile and deeply connected to Marbella.</p></div>
+  </section>
 
-<section class="full-image" id="interiors"><img src="/assets/interior/interior-4.jpg" alt="Living room and kitchen"><div class="image-note"><span>01</span><p>Living · Kitchen</p></div></section>
+  <section class="arrival">
+    <div class="arrival-media zoom reveal"><img src="/assets/interior/interior-3.jpg" alt="Los Verdiales residence"></div>
+    <div class="arrival-copy reveal"><p class="kicker">The house</p><h3>Private from the very first moment.</h3><p>A restrained palette and carefully considered proportions establish the character of the residence before the details reveal themselves.</p></div>
+  </section>
 
-<section class="duo"><figure><img src="/assets/interior/interior-3.jpg" alt="Living room"><figcaption>Living spaces</figcaption></figure><figure><img src="/assets/interior/interior-2.jpg" alt="Primary suite"><figcaption>Primary suite · Morning</figcaption></figure></section>
+  <section class="facade zoom reveal"><img src="/assets/interior/interior-4.jpg" alt="Living spaces"><div class="facade-copy"><span>Residence · Marbella</span><h2>Life opens towards the light.</h2></div></section>
 
-<section class="quote"><p>Materiality</p><h2>Stone that feels cool underfoot. Oak that gains character with time. Bronze that catches the morning light.</h2></section>
+  <section class="statement reveal"><p class="kicker">Materiality</p><h2>Stone. Oak. Bronze. Linen. Every material chosen to become more beautiful with time.</h2></section>
 
-<section class="story"><div class="story-copy"><p class="kicker">Private spaces</p><h2>A softer rhythm.</h2><p>The primary suite is intentionally quieter than the entertaining spaces. Layered textiles, tactile wall finishes and warm joinery create a room that feels settled rather than styled.</p></div><div class="story-images"><img src="/assets/interior/interior-1.jpg" alt="Primary suite evening"><img src="/assets/interior/interior-5.jpg" alt="Primary bathroom"></div></section>
+  <section class="story" id="interiors">
+    <div class="story-copy reveal"><p class="kicker">Living</p><h2>Light, proportion and a softer rhythm.</h2><p>The main living spaces are deliberately calm. Bespoke joinery, subtle texture and warm lighting bring intimacy to the scale of the house.</p></div>
+    <div class="living-img zoom reveal"><img src="/assets/interior/interior-4.jpg" alt="Living room and kitchen"></div>
+  </section>
 
-<section class="full-image dark" id="wellness"><img src="/assets/interior/interior-7.jpg" alt="Wellness and pool"><div class="overlay-copy"><p>Wellness level</p><h2>A retreat within the residence.</h2><span>Indoor pool · relaxation · training · spa</span></div></section>
+  <section class="suite zoom reveal"><img src="/assets/interior/interior-1.jpg" alt="Primary suite"><div class="suite-copy"><p class="kicker">Primary suite</p><h2>A retreat within the residence.</h2><p>Layered textiles, deep timber tones and softly illuminated surfaces create a private atmosphere removed from the more social spaces of the house.</p></div></section>
 
-<section class="leisure"><img src="/assets/interior/interior-6.jpg" alt="Wine lounge and games room"><div><p class="kicker">Leisure</p><h2>For evenings that have no reason to end.</h2><p>A private lounge with bar, wine display, billiards and relaxed seating gives the lower level its own character while remaining part of the same material language.</p></div></section>
+  <section class="bath">
+    <div class="bath-media zoom reveal"><img src="/assets/interior/interior-5.jpg" alt="Primary bathroom"></div>
+    <div class="bath-copy reveal"><p class="kicker">Private spaces</p><h2>Quiet detail, beautifully resolved.</h2><p>Stone, restrained cabinetry and aged metal details give the private rooms a residential warmth rather than a conventional hotel feel.</p></div>
+  </section>
 
-<section class="collection"><div class="collection-head"><p class="kicker">Interior collection</p><span id="interiorCount">07 images</span></div><div class="strip" id="interiorStrip"></div></section>
+  <section class="wellness zoom reveal" id="wellness"><img src="/assets/interior/interior-7.jpg" alt="Private wellness level"><div class="wellness-copy"><div><p class="kicker">Wellness level</p><h2>Time slows down here.</h2></div><p>Pool, training and relaxation spaces form a secluded wellness world at the heart of the residence.</p></div></section>
 
-<section class="gallery-section" id="exterior" hidden><div class="section-head"><p class="kicker">Exterior</p><h2>The house in its landscape.</h2></div><div class="gallery" id="exteriorGallery"></div></section>
+  <section class="identity reveal"><div class="monogram">LV</div><h3>LOS VERDIALES</h3><p>Marbella</p></section>
 
-<section class="contact" id="contact"><div><p class="kicker">Private presentation</p><h2>Los Verdiales<br>Marbella</h2><p>For specifications, plans, availability and a private viewing, request the full presentation.</p></div><form name="private-viewing" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html"><input type="hidden" name="form-name" value="private-viewing"><p class="hidden"><label>Leave empty <input name="bot-field"></label></p><label>Name<input name="name" required></label><label>Email<input name="email" type="email" required></label><label>Phone<input name="phone"></label><label>Message<textarea name="message" rows="3"></textarea></label><button type="submit">Request private presentation</button></form></section>
+  <section class="closing" id="contact"><div class="closing-grid">
+    <div class="reveal"><p class="kicker">Private presentation</p><h2>By appointment only.</h2><p class="closing-copy">For specifications, plans, availability and a private viewing of Los Verdiales, request the full presentation.</p></div>
+    <form class="reveal" name="private-viewing" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html"><input type="hidden" name="form-name" value="private-viewing"><p class="hidden"><label>Leave empty <input name="bot-field"></label></p><label>Name<input name="name" required></label><label>Email<input name="email" type="email" required></label><label>Phone<input name="phone"></label><label>Message<textarea name="message" rows="3"></textarea></label><button type="submit">Request private presentation</button></form>
+  </div><footer><span>Los Verdiales</span><span>Marbella · Spain</span><span>Private residence</span></footer></section>
 </main>
-<footer><span>LOS VERDIALES</span><span>Marbella · Spain</span></footer>
-</body></html>
+</body>
+</html>
