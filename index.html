@@ -1,159 +1,511 @@
 <!doctype html>
-<html lang="en">
+<html lang="no">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#11100d">
-<meta name="description" content="Los Verdiales — a private residence in Marbella shaped by Mediterranean light, natural materials and quiet luxury.">
-<title>Los Verdiales — Marbella</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Los Verdiales, Marbella</title>
+<meta name="description" content="Los Verdiales. En privat residens på Golden Mile i Marbella, tegnet av Diego Tobal.">
+<meta name="theme-color" content="#ece5d9">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Los Verdiales, Marbella">
+<meta property="og:description" content="En privat residens på Golden Mile i Marbella, tegnet av Diego Tobal.">
+<meta property="og:image" content="https://los-verdiales.netlify.app/assets/pool-dusk-poster.jpg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2314110e'/><circle cx='16' cy='16' r='6' fill='%23c9a27a'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Italiana&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css">
-<script src="/app.js" defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/hero-curtains-poster.jpg">
+<link rel="stylesheet" href="scrollcraft.css">
+<style>
+  /* Six colours and two faces. Everything else derives. */
+  :root {
+    --sc-canvas:      #ece5d9;
+    --sc-surface:     #e1d8c9;
+    --sc-ink:         #26211c;
+    --sc-ink-soft:    #6b6157;
+    --sc-accent:      #b58a5e;
+    --sc-accent-ink:  #16120f;
+    --sc-font-display: "Cormorant Garamond", Georgia, serif;
+    --sc-font-text:    "DM Sans", system-ui, sans-serif;
+    --sc-shadow-color: 30 25% 8%;
+    --sc-r-sm: 2px; --sc-r-md: 2px; --sc-r-lg: 2px;
+    --lv-tint: rgba(255,214,170,0);
+  }
+  body { font-weight: 300; }
+  .sc-display { font-weight: 400; letter-spacing: -0.012em; line-height: 1.0; }
+  .sc-display--xl { font-size: clamp(3.6rem, 2.2rem + 8vw, 9rem); }
+  .sc-body { font-size: var(--sc-t-base); }
+  .sc-lede { font-family: var(--sc-font-display); font-weight: 400; font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.6rem); line-height: 1.18; max-width: 22ch; }
+
+  /* Day / night sections restate ink AND color: colour inherits as a computed value. */
+  .is-day   { --sc-ink: #26211c; --sc-ink-soft: #6b6157; color: var(--sc-ink); }
+  .is-night { --sc-ink: #efe6d8; --sc-ink-soft: #b3a696; color: var(--sc-ink); }
+
+  /* ---------------------------------------------------------- the bar -- */
+  .bar {
+    position: fixed; inset: 0 0 auto 0; z-index: var(--sc-z-chrome);
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+    gap: var(--sc-5); padding: var(--sc-4) var(--sc-gutter);
+    color: var(--sc-ink); pointer-events: none;
+  }
+  .bar::before { content: ""; position: absolute; inset: 0 0 -2.5rem 0; z-index: -1; pointer-events: none;
+    background: linear-gradient(to bottom, color-mix(in oklab, var(--sc-canvas) 62%, transparent), color-mix(in oklab, var(--sc-canvas) 28%, transparent) 60%, transparent); }
+  .bar > * { pointer-events: auto; }
+  .bar__brand { font-family: var(--sc-font-display); font-size: 1.35rem; letter-spacing: 0.02em; text-decoration: none; }
+  .bar__end { display: flex; justify-content: flex-end; align-items: center; gap: var(--sc-5); }
+  .bar__lang { font-size: var(--sc-t-xs); letter-spacing: 0.08em; text-decoration: none; opacity: 0.7; }
+  .bar__lang:hover { opacity: 1; }
+  .cta {
+    display: inline-flex; align-items: center; height: 2.6rem; padding: 0 1.2rem;
+    border: 1px solid currentColor; border-radius: var(--sc-r-pill); text-decoration: none;
+    font-size: var(--sc-t-sm); letter-spacing: 0.02em; white-space: nowrap;
+    transition: background-color 160ms var(--sc-ease-out), color 160ms var(--sc-ease-out), transform 120ms var(--sc-ease-out);
+  }
+  .cta:hover { background: var(--sc-ink); color: var(--sc-canvas); }
+  .cta:active { transform: scale(0.97); }
+
+  /* The horizon: the signature. One sun, one arc, seven stops. Scroll is the day. */
+  .sky { width: clamp(11rem, 22vw, 20rem); height: 34px; display: block; overflow: visible; }
+  .sky__arc { fill: none; stroke: currentColor; stroke-opacity: 0.28; stroke-width: 1; }
+  .sky__horizon { stroke: currentColor; stroke-opacity: 0.45; stroke-width: 1; }
+  .sky__stop { fill: currentColor; fill-opacity: 0.35; cursor: pointer; transition: fill-opacity 160ms; }
+  .sky__stop:hover, .sky__stop.is-here { fill-opacity: 1; }
+  .sky__sun { fill: var(--sc-accent); }
+  .sky__glow { fill: var(--sc-accent); opacity: 0.35; }
+  .sky__label {
+    position: absolute; left: 50%; top: calc(100% - 0.35rem); translate: -50% 0;
+    font-size: var(--sc-t-xs); letter-spacing: 0.06em; color: var(--sc-ink-soft); white-space: nowrap;
+    pointer-events: none;
+  }
+  .bar__sky { position: relative; display: grid; place-items: center; }
+
+  /* -------------------------------------------------------- the media -- */
+  .lv-media { position: relative; overflow: clip; background: var(--sc-surface); }
+  .lv-media img { width: 100%; height: 100%; object-fit: cover; }
+  /* The day grades the photographs. Multiply, never above 20%. */
+  .lv-media::after { content: ""; position: absolute; inset: 0; background: var(--lv-tint); mix-blend-mode: multiply; pointer-events: none; }
+
+  /* 1 hero */
+  .hero .sc-copy--lead { bottom: clamp(3.5rem, 13vh, 9rem); max-width: min(54rem, 84vw); }
+  .hero__place { font-size: var(--sc-t-sm); letter-spacing: 0.04em; color: var(--sc-ink-soft); margin: 0 0 var(--sc-3); }
+  .hero__line { font-family: var(--sc-font-display); font-style: italic; font-weight: 400; font-size: clamp(1.25rem, 1rem + 1.2vw, 2rem); line-height: 1.25; margin: var(--sc-4) 0 0; max-width: 36ch; color: var(--sc-ink); }
+
+  /* 2 the opening: a pinned photograph, copy crossing over on a masked column */
+  .open__bed { position: absolute; inset: -6% 0; }
+  .open__bed img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; }
+  .open__mask { position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(90deg, var(--sc-canvas) 0%, color-mix(in oklab, var(--sc-canvas) 88%, transparent) 30%, color-mix(in oklab, var(--sc-canvas) 30%, transparent) 50%, transparent 66%); }
+  .open__copy { position: absolute; z-index: var(--sc-z-copy); left: var(--sc-gutter); top: 50%; translate: 0 -50%; width: min(34rem, 80vw); }
+  .open__copy > * { position: absolute; left: 0; top: 0; width: 100%; translate: 0 -50%; margin: 0; }
+
+  /* 3 the softer rooms: one asymmetric spread */
+  .rooms { padding-block: clamp(3rem, 7vw, 8rem) var(--sc-section); }
+  .rooms .sc-wrap { max-width: none; }
+  .rooms__grid { display: grid; grid-template-columns: 8fr 4fr; gap: var(--sc-7) var(--sc-6); align-items: start; }
+  .rooms__bed { grid-column: 1; aspect-ratio: 3 / 2; }
+  .rooms__bath { grid-column: 2; aspect-ratio: 4 / 5; margin-top: clamp(4rem, 14vw, 14rem); }
+  .rooms__copy { grid-column: 1; max-width: 46rem; }
+  .rooms__copy .sc-body { margin-top: var(--sc-5); }
+  .rooms__note { grid-column: 2; align-self: end; }
+  .rooms__note p { margin: 0; }
+
+  /* 4 materials rail: objects with a label schema */
+  .rail { gap: clamp(1.25rem, 3vw, 3rem); padding-inline: var(--sc-gutter); align-items: center; height: 100%; }
+  [data-sc-act="pan"] .sc-stage { background: #3a3128; display: flex; align-items: center; }
+  .rail__lead { flex: 0 0 auto; width: clamp(16rem, 28vw, 24rem); padding-right: clamp(1rem, 4vw, 4rem); }
+  .rail__lead .sc-body { margin-top: var(--sc-4); }
+  .item { flex: 0 0 auto; width: clamp(16rem, 27vw, 25rem); }
+  .item .lv-media { aspect-ratio: 4 / 5; box-shadow: var(--sc-e2); }
+  .item dl { margin: var(--sc-4) 0 0; display: grid; gap: 2px; }
+  .item dt { font-family: var(--sc-font-display); font-size: var(--sc-t-lg); font-weight: 400; margin: 0; }
+  .item dd { margin: 0; color: var(--sc-ink-soft); font-size: var(--sc-t-sm); }
+  .rail__tail { flex: 0 0 auto; width: clamp(14rem, 22vw, 20rem); }
+  @media (prefers-reduced-motion: no-preference) {
+    .item { opacity: calc(0.55 + 0.45 * clamp(0, (var(--sc-p, 0) - var(--i, 0) + 0.18) / 0.18, 1)); }
+  }
+
+  /* 5 wellness, full bleed, and the silence */
+  .well { padding: 0 0 var(--sc-section); }
+  .well__media { aspect-ratio: 16 / 9; max-height: 92vh; }
+  .well__copy { padding: var(--sc-7) var(--sc-gutter) 0; display: grid; grid-template-columns: 1fr 1fr; gap: var(--sc-6); }
+  .well__copy .sc-body { align-self: end; }
+  .hush { min-height: 60vh; display: grid; place-items: center; text-align: center; padding: var(--sc-9) var(--sc-gutter); }
+  .hush p { font-family: var(--sc-font-display); font-style: italic; font-size: clamp(1.4rem, 1.1rem + 1.4vw, 2.2rem); margin: 0; color: var(--sc-ink-soft); }
+
+  /* 6 the peak */
+  .peak .sc-copy--trail { bottom: clamp(3.5rem, 14vh, 10rem); max-width: min(46rem, 84vw); }
+  .peak .sc-body { margin-top: var(--sc-4); margin-left: auto; max-width: 34ch; color: var(--sc-ink); }
+
+  /* 7 the close */
+  .close__bed { position: absolute; inset: -5% 0; }
+  .close__bed img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+  .close__mask { position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(90deg, color-mix(in oklab, var(--sc-canvas) 92%, transparent) 0%, color-mix(in oklab, var(--sc-canvas) 70%, transparent) 38%, transparent 66%),
+                linear-gradient(0deg, var(--sc-canvas) 0%, transparent 34%); }
+  .close__inner { position: absolute; z-index: var(--sc-z-copy); left: var(--sc-gutter); right: var(--sc-gutter); top: 50%; translate: 0 -50%; max-width: 40rem; }
+  .facts { list-style: none; padding: 0; margin: var(--sc-6) 0 0; display: grid; gap: var(--sc-2); max-width: 32rem; }
+  .facts li { display: grid; grid-template-columns: 8.5rem 1fr; gap: var(--sc-4); padding: var(--sc-3) 0; border-top: 1px solid var(--sc-hairline); }
+  .facts li:last-child { border-bottom: 1px solid var(--sc-hairline); }
+  .facts span:first-child { color: var(--sc-ink-soft); font-size: var(--sc-t-sm); }
+  .close__cta { margin-top: var(--sc-7); display: flex; gap: var(--sc-5); align-items: center; flex-wrap: wrap; }
+  .close__cta .cta--solid { background: var(--sc-ink); color: var(--sc-canvas); border-color: var(--sc-ink); height: 3rem; padding: 0 1.6rem; }
+  .close__cta .cta--solid:hover { background: var(--sc-accent); border-color: var(--sc-accent); color: var(--sc-accent-ink); }
+  .close__cta small { color: var(--sc-ink-soft); font-size: var(--sc-t-sm); max-width: 24ch; }
+  .foot { position: absolute; z-index: var(--sc-z-copy); left: var(--sc-gutter); right: var(--sc-gutter); bottom: max(1.25rem, env(safe-area-inset-bottom)); display: flex; justify-content: space-between; gap: var(--sc-4); font-size: var(--sc-t-xs); color: var(--sc-ink-soft); letter-spacing: 0.03em; }
+  .foot a { text-decoration: none; }
+
+  /* the viewing request */
+  dialog.ask { border: 0; padding: 0; background: transparent; max-width: min(28rem, 92vw); }
+  dialog.ask::backdrop { background: rgba(20,16,12,0.72); backdrop-filter: blur(6px); }
+  .ask__card { background: #efe7db; color: #26211c; --sc-ink:#26211c; --sc-ink-soft:#6b6157; padding: var(--sc-6); box-shadow: var(--sc-e3); }
+  .ask__card h3 { font-family: var(--sc-font-display); font-weight: 400; font-size: var(--sc-t-xl); margin: 0 0 var(--sc-2); }
+  .ask__card p { margin: 0 0 var(--sc-5); color: var(--sc-ink-soft); font-size: var(--sc-t-sm); }
+  .ask__card label { display: grid; gap: 4px; font-size: var(--sc-t-xs); letter-spacing: 0.05em; color: var(--sc-ink-soft); margin-bottom: var(--sc-4); }
+  .ask__card input { height: 2.7rem; border: 0; border-bottom: 1px solid #a89a88; background: transparent; padding: 0; font-size: var(--sc-t-base); color: #26211c; }
+  .ask__card input:focus { outline: none; border-bottom-color: #26211c; }
+  .ask__row { display: flex; justify-content: space-between; align-items: center; gap: var(--sc-4); margin-top: var(--sc-5); }
+  .ask__row button.cta { cursor: pointer; background: #26211c; color: #efe7db; border-color: #26211c; }
+  .ask__row .ask__close { background: none; border: 0; cursor: pointer; color: #6b6157; font-size: var(--sc-t-sm); padding: 0.5rem 0; }
+
+  /* --------------------------------------------------------------- mobile -- */
+  @media (max-width: 860px) {
+    .bar { grid-template-columns: 1fr auto; grid-template-areas: "brand end" "sky sky"; row-gap: var(--sc-2); padding-block: var(--sc-3) var(--sc-2); }
+    .bar__brand { grid-area: brand; font-size: 1.15rem; }
+    .bar__end { grid-area: end; gap: var(--sc-4); }
+    .bar__sky { grid-area: sky; }
+    .sky { width: 100%; height: 26px; }
+    .sky__label { display: none; }
+    .cta { height: 2.3rem; padding: 0 0.95rem; }
+    .sc-display--xl { font-size: clamp(3rem, 14vw, 4.4rem); }
+    .hero__line { max-width: 24ch; }
+    .open__copy { top: auto; bottom: clamp(3rem, 12vh, 7rem); translate: 0 0; }
+    .open__copy > * { translate: 0 -100%; }
+    .open__mask { background: linear-gradient(0deg, var(--sc-canvas) 0%, color-mix(in oklab, var(--sc-canvas) 82%, transparent) 30%, transparent 62%); }
+    .open__bed img { object-position: 30% 50%; }
+    .rooms__grid { grid-template-columns: 1fr; gap: var(--sc-6); }
+    .rooms__bed, .rooms__bath, .rooms__copy, .rooms__note { grid-column: 1; }
+    .rooms__bath { margin-top: 0; width: 74%; margin-left: auto; aspect-ratio: 4 / 5; }
+    .rail__lead { width: 70vw; }
+    .item { width: 66vw; }
+    .well__copy { grid-template-columns: 1fr; }
+    .well__media { aspect-ratio: 4 / 5; max-height: none; }
+    .well__media img { object-position: 45% 50%; }
+    .close__inner { top: auto; bottom: clamp(4.5rem, 14vh, 8rem); translate: 0 0; }
+    .close__mask { background: linear-gradient(0deg, var(--sc-canvas) 0%, color-mix(in oklab, var(--sc-canvas) 86%, transparent) 42%, transparent 72%); }
+    .facts li { grid-template-columns: 6.5rem 1fr; }
+    .foot { flex-direction: column; gap: var(--sc-1); }
+  }
+</style>
 </head>
-<body>
-<header class="nav" id="nav">
-  <a class="brand" href="#top" aria-label="Los Verdiales home">
-    <span class="brand-mark">LV</span>
-    <span class="brand-name">Los Verdiales · Marbella</span>
-  </a>
-  <nav aria-label="Primary navigation">
-    <a href="#residence">Residence</a>
-    <a href="#interiors">Interiors</a>
-    <a href="#wellness">Wellness</a>
-    <a href="#contact">Private viewing</a>
-  </nav>
-  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">Menu</button>
+<body class="is-day">
+
+<div class="sc-grain" aria-hidden="true"></div>
+
+<header class="bar is-day" id="bar">
+  <a class="bar__brand" href="#top">Los Verdiales</a>
+  <div class="bar__sky">
+    <svg class="sky" viewBox="0 0 220 34" aria-hidden="true" id="sky">
+      <path class="sky__arc" d="M6 28 Q110 -14 214 28"/>
+      <line class="sky__horizon" x1="0" y1="28" x2="220" y2="28"/>
+      <g id="stops"></g>
+      <circle class="sky__glow" id="sunGlow" cx="6" cy="28" r="7"/>
+      <circle class="sky__sun" id="sun" cx="6" cy="28" r="3.2"/>
+    </svg>
+    <span class="sky__label" id="skyLabel"></span>
+  </div>
+  <div class="bar__end">
+    <a class="bar__lang" href="?lang=en" data-lang-link>EN</a>
+    <a class="cta" href="#visning" data-ask data-i18n="cta">Be om visning</a>
+  </div>
 </header>
 
 <main id="top">
-  <section class="arrival-world" data-arrival>
-    <div class="arrival-stage">
-      <figure class="arrival-frame arrival-frame-a"><img src="/assets/interior/interior-3.jpg" alt="Los Verdiales arrival"></figure>
-      <figure class="arrival-frame arrival-frame-b"><img src="/assets/interior/interior-4.jpg" alt="Los Verdiales living spaces"></figure>
-      <div class="arrival-vignette"></div>
-      <div class="arrival-grain"></div>
 
-      <div class="arrival-title" data-arrival-copy="0">
-        <p class="eyebrow">Marbella · Spain</p>
-        <h1>Los<br>Verdiales</h1>
-        <p class="hero-side">A private residence shaped by Mediterranean light, natural materials and a quieter idea of luxury.</p>
-      </div>
-
-      <div class="arrival-beat beat-one" data-arrival-copy="1">
-        <span class="chapter-no">01</span>
-        <div><p class="eyebrow">Arrival</p><h2>Privacy begins before the front door.</h2></div>
-      </div>
-
-      <div class="arrival-beat beat-two" data-arrival-copy="2">
-        <span class="chapter-no">02</span>
-        <div><p class="eyebrow">The house</p><h2>Architecture that opens slowly.</h2></div>
-      </div>
-
-      <div class="arrival-progress" aria-hidden="true"><span></span></div>
-      <span class="scroll-cue">Enter the residence</span>
-    </div>
-  </section>
-
-  <section class="editorial-intro" id="residence">
-    <p class="folio reveal">The residence · Marbella</p>
-    <div class="editorial-intro-grid">
-      <h2 class="display reveal">Not designed to impress quickly.<br><em>Designed to stay with you.</em></h2>
-      <div class="intro-copy reveal">
-        <p>Los Verdiales is conceived as a complete private world — architecture, interiors and landscape moving as one.</p>
-        <p>Natural stone, warm timber, bronze details and filtered daylight create a house that feels settled, tactile and unmistakably Mediterranean.</p>
+  <!-- 1 · STILLHET: the curtains move under the reader's hand -->
+  <section class="hero is-day" data-sc-act="scrub" data-sc-span="2.6" data-sc-dwell="0.34" data-sc-drift="#ece5d9" data-lv-stop="hero" data-lv-time="07:40">
+    <div data-sc-stage>
+      <img class="sc-stage__poster" src="assets/hero-curtains-poster.jpg" alt="">
+      <video data-sc-scrub data-lv-mp4="assets/hero-curtains.mp4" data-lv-webm="assets/hero-curtains.webm" muted playsinline></video>
+      <div class="sc-scrim sc-scrim--lead" aria-hidden="true"></div>
+      <div class="sc-copy sc-copy--lead" data-sc-cue="0 0.78 0">
+        <p class="hero__place" data-i18n="hero.place">Golden Mile, Marbella</p>
+        <h1 class="sc-display sc-display--xl">Los Verdiales</h1>
+        <p class="hero__line" data-sc-kinetic="lines" data-i18n="hero.line">Et stille hus mellom stein, lys og hage.</p>
       </div>
     </div>
   </section>
 
-  <section class="image-chapter image-chapter-light" data-depth>
-    <div class="chapter-image"><img src="/assets/interior/interior-2.jpg" alt="Interior detail at Los Verdiales"></div>
-    <div class="chapter-caption reveal">
-      <span class="chapter-no">03</span>
-      <div><p class="kicker">A quieter luxury</p><h2>Nothing asks for attention.<br>Everything rewards it.</h2></div>
-    </div>
-  </section>
-
-  <section class="material-chapter">
-    <div class="material-head reveal">
-      <p class="folio">Materiality</p>
-      <h2 class="display">Stone.<br>Oak.<br>Bronze.<br><em>Linen.</em></h2>
-    </div>
-    <div class="material-note reveal">
-      <p>Materials are selected for touch, patina and permanence. The palette is warm rather than decorative — intended to become better with time.</p>
-      <span>Built around texture, proportion and light.</span>
-    </div>
-  </section>
-
-  <section class="interiors" id="interiors">
-    <div class="interiors-title reveal">
-      <p class="folio">Interiors · 04</p>
-      <h2 class="display">Rooms with<br><em>their own rhythm.</em></h2>
-    </div>
-
-    <div class="gallery-rail" data-rail>
-      <article class="gallery-card card-wide"><img src="/assets/interior/interior-4.jpg" alt="Main living room"><div><span>Living</span><p>Scale softened by warm joinery, natural surfaces and filtered light.</p></div></article>
-      <article class="gallery-card card-tall"><img src="/assets/interior/interior-1.jpg" alt="Primary suite"><div><span>Primary suite</span><p>A private retreat with deeper tones and layered textiles.</p></div></article>
-      <article class="gallery-card card-square"><img src="/assets/interior/interior-5.jpg" alt="Bathroom"><div><span>Private spaces</span><p>Stone, cabinetry and aged metal resolved with restraint.</p></div></article>
-      <article class="gallery-card card-tall"><img src="/assets/interior/interior-6.jpg" alt="Interior detail"><div><span>Detail</span><p>Nothing arbitrary. Every junction and finish belongs to the same language.</p></div></article>
-    </div>
-  </section>
-
-  <section class="suite-chapter" data-depth>
-    <img src="/assets/interior/interior-1.jpg" alt="Primary suite at Los Verdiales">
-    <div class="suite-overlay"></div>
-    <div class="suite-copy reveal">
-      <p class="folio">Private quarters · 05</p>
-      <h2 class="display">A retreat<br>within the residence.</h2>
-      <p>Layered textiles, warm timber and softly illuminated surfaces create a more intimate world away from the social heart of the house.</p>
-    </div>
-  </section>
-
-  <section class="pause-chapter">
-    <p class="folio reveal">Mediterranean living</p>
-    <h2 class="display reveal">The luxury is not excess.<br><em>It is how the house feels at 9:17 in the morning.</em></h2>
-  </section>
-
-  <section class="wellness-peak" id="wellness" data-wellness>
-    <div class="wellness-sticky">
-      <img src="/assets/interior/interior-7.jpg" alt="Private wellness level at Los Verdiales">
-      <div class="wellness-shade"></div>
-      <div class="wellness-index">06</div>
-      <div class="wellness-copy reveal">
-        <p class="eyebrow">The private level</p>
-        <h2>Time<br>slows<br>down here.</h2>
-        <p>Pool, training and relaxation spaces form a secluded wellness world at the heart of the residence.</p>
+  <!-- 2 · GJENKJENNELSE: the frame holds, three lines cross over -->
+  <section class="open is-day" data-sc-act="pin" data-sc-span="3.2" data-sc-drift="#e3dacb" data-lv-stop="open" data-lv-time="10:15">
+    <div data-sc-stage>
+      <div class="open__bed lv-media" data-sc-parallax="-0.7">
+        <img src="assets/02-kitchen-living.webp" srcset="assets/02-kitchen-living-m.webp 900w, assets/02-kitchen-living.webp 1600w" sizes="100vw" width="1600" height="900" alt="Åpent kjøkken og stue mot hagen" data-i18n-alt="open.alt">
       </div>
-      <div class="wellness-word" aria-hidden="true">VERDIALES</div>
-    </div>
-  </section>
-
-  <section class="identity-chapter">
-    <div class="identity-mark reveal">LV</div>
-    <p class="identity-name reveal">Los Verdiales</p>
-    <p class="identity-place reveal">Marbella · Spain</p>
-  </section>
-
-  <section class="closing" id="contact">
-    <div class="closing-grid">
-      <div class="closing-copy-block reveal">
-        <p class="folio">Private presentation</p>
-        <h2 class="display">By appointment<br><em>only.</em></h2>
-        <p>For specifications, plans, availability and a private viewing of Los Verdiales, request the full presentation.</p>
+      <div class="open__mask" aria-hidden="true"></div>
+      <div class="open__copy">
+        <p class="sc-lede" data-sc-cue="0 0.34 0" data-i18n="open.1">Huset åpner seg her.</p>
+        <p class="sc-lede" data-sc-cue="0.28 0.64" data-i18n="open.2">Kjøkkenøya, stuen og hagen i én flukt.</p>
+        <p class="sc-lede" data-sc-cue="0.58 1" data-i18n="open.3">Rommet dagen samles i.</p>
       </div>
-      <form class="reveal" name="private-viewing" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
-        <input type="hidden" name="form-name" value="private-viewing">
-        <p class="hidden"><label>Leave empty <input name="bot-field"></label></p>
-        <label>Name<input name="name" required></label>
-        <label>Email<input name="email" type="email" required></label>
-        <label>Phone<input name="phone"></label>
-        <label>Message<textarea name="message" rows="3"></textarea></label>
-        <button type="submit">Request private presentation <span>↗</span></button>
-      </form>
     </div>
-    <footer><span>Los Verdiales</span><span>Marbella · Spain</span><span>Private residence</span></footer>
   </section>
+
+  <!-- 3 · MYKHET: the private rooms, one spread -->
+  <section class="rooms sc-section is-day" data-sc-act="flow" data-sc-drift="#d9cdbb" data-lv-stop="rooms" data-lv-time="13:00">
+    <div class="sc-wrap rooms__grid">
+      <figure class="lv-media rooms__bed" data-sc-reveal="up" data-sc-reveal-at="0.05 0.45">
+        <img src="assets/01-bedroom.webp" srcset="assets/01-bedroom-m.webp 900w, assets/01-bedroom.webp 1600w" sizes="(max-width: 860px) 100vw, 58vw" width="1600" height="900" loading="lazy" alt="Hovedsoverom med hvit wingback og dempet lys" data-i18n-alt="rooms.bedAlt">
+      </figure>
+      <figure class="lv-media rooms__bath" data-sc-reveal="left" data-sc-reveal-at="0.15 0.6">
+        <img src="assets/03-bathroom.webp" srcset="assets/03-bathroom-m.webp 900w, assets/03-bathroom.webp 1600w" sizes="(max-width: 860px) 74vw, 40vw" width="1456" height="1080" loading="lazy" alt="Bad med badekar i salvie og servant i messing" data-i18n-alt="rooms.bathAlt">
+      </figure>
+      <div class="rooms__copy sc-stack" data-sc-in data-sc-stagger="70">
+        <h2 class="sc-display sc-display--lg" data-i18n="rooms.h">Et mykere tempo.</h2>
+        <p class="sc-body" data-i18n="rooms.p">Hovedsoverommet ligger i den stille enden av huset. Lag på lag med tekstiler, dempede lamper, og et bad der badekaret står fritt i rommet. Ingenting her har hast.</p>
+      </div>
+      <div class="rooms__note" data-sc-in>
+        <p class="sc-body" data-i18n="rooms.note">Salvie, messing og kalkpuss. Samme materialer i hele huset.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · TYNGDE: the materials, sideways, labelled as fact -->
+  <section class="is-night" data-sc-act="pan" data-sc-span="6" data-sc-drift="#3a3128" data-lv-stop="materials" data-lv-time="16:30">
+    <div data-sc-stage>
+      <div class="rail" data-sc-pan="0.05">
+        <div class="rail__lead">
+          <h2 class="sc-display sc-display--md" data-i18n="mat.h">Materialene.</h2>
+          <p class="sc-body" data-i18n="mat.p">Få og gode. Valgt for å eldes.</p>
+        </div>
+        <article class="item" style="--i:0.2"><div class="lv-media" data-sc-tilt="4"><img src="assets/d-stone.webp" width="800" height="1120" loading="lazy" alt=""></div><dl><dt data-i18n="mat.1t">Travertin</dt><dd data-i18n="mat.1d">Vegg og gulv ved bassenget.</dd></dl></article>
+        <article class="item" style="--i:0.35"><div class="lv-media" data-sc-tilt="4"><img src="assets/d-oak.webp" width="800" height="693" loading="lazy" alt=""></div><dl><dt data-i18n="mat.2t">Eik</dt><dd data-i18n="mat.2d">Kjøkkenfronter og hyller, lyst behandlet.</dd></dl></article>
+        <article class="item" style="--i:0.5"><div class="lv-media" data-sc-tilt="4"><img src="assets/d-tub.webp" width="800" height="954" loading="lazy" alt=""></div><dl><dt data-i18n="mat.3t">Salvie</dt><dd data-i18n="mat.3d">Frittstående badekar.</dd></dl></article>
+        <article class="item" style="--i:0.65"><div class="lv-media" data-sc-tilt="4"><img src="assets/d-vanity.webp" width="800" height="600" loading="lazy" alt=""></div><dl><dt data-i18n="mat.4t">Messing</dt><dd data-i18n="mat.4d">Riflet servant og armatur.</dd></dl></article>
+        <article class="item" style="--i:0.8"><div class="lv-media" data-sc-tilt="4"><img src="assets/d-linen.webp" width="800" height="723" loading="lazy" alt=""></div><dl><dt data-i18n="mat.5t">Lin</dt><dd data-i18n="mat.5d">Sengetøy og gardiner.</dd></dl></article>
+        <article class="item" style="--i:0.95"><div class="lv-media" data-sc-tilt="4"><img src="assets/d-wine.webp" width="800" height="800" loading="lazy" alt=""></div><dl><dt data-i18n="mat.6t">Vinvegg</dt><dd data-i18n="mat.6d">Lounge på nedre plan.</dd></dl></article>
+        <div class="rail__tail"><p class="sc-body" data-i18n="mat.tail">Fullstendig spesifikasjon deles ved privat visning.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · TILFLUKT: one iris, then the quiet before the peak -->
+  <section class="well is-night" data-sc-act="flow" data-sc-drift="#241e19" data-lv-stop="well" data-lv-time="18:40">
+    <figure class="lv-media well__media" data-sc-reveal="iris" data-sc-reveal-at="0.02 0.5">
+      <img src="assets/05-pool-gym.webp" srcset="assets/05-pool-gym-m.webp 900w, assets/05-pool-gym.webp 1600w" sizes="100vw" width="1600" height="1067" loading="lazy" alt="Innendørs basseng og treningsrom bak glass" data-i18n-alt="well.alt">
+    </figure>
+    <div class="well__copy sc-wrap" data-sc-in data-sc-stagger="80">
+      <h2 class="sc-display sc-display--lg" data-i18n="well.h">Et tilfluktssted i huset.</h2>
+      <p class="sc-body" data-i18n="well.p">Basseng, treningsrom og spa bak glass på nedre plan. Vann, lys og restitusjon, uten å forlate huset.</p>
+    </div>
+    <div class="hush" data-sc-in>
+      <p data-i18n="hush">Så går solen ned.</p>
+    </div>
+  </section>
+
+  <!-- 6 · KVELDEN: the peak. The only exterior, the house lit, the widest span. -->
+  <section class="peak is-night" data-sc-act="scrub" data-sc-span="3.8" data-sc-dwell="0.44" data-sc-drift="#15110e" data-lv-stop="peak" data-lv-time="21:05">
+    <div data-sc-stage>
+      <img class="sc-stage__poster" src="assets/pool-dusk-poster.jpg" alt="">
+      <video data-sc-scrub data-lv-mp4="assets/pool-dusk.mp4" data-lv-webm="assets/pool-dusk.webm" muted playsinline></video>
+      <div class="sc-scrim sc-scrim--trail" aria-hidden="true"></div>
+      <div class="sc-copy sc-copy--trail" data-sc-cue="0.16 1">
+        <h2 class="sc-display sc-display--lg" data-sc-kinetic="lines" data-i18n="peak.h">Kvelden faller over hagen.</h2>
+        <p class="sc-body" data-i18n="peak.p">Bassenget lyser turkis, terrassen fylles, og huset står tent bak glasset.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · RO: the house holds its light. Facts, one action, the small print. Last element. -->
+  <section class="close is-night" id="visning" data-sc-act="pin" data-sc-span="1.7" data-sc-drift="#0f0d0b" data-lv-stop="close" data-lv-time="23:30">
+    <div data-sc-stage data-sc-spotlight>
+      <div class="close__bed lv-media" data-sc-parallax="-0.5">
+        <img src="assets/06-dusk-living.webp" srcset="assets/06-dusk-living-m.webp 900w, assets/06-dusk-living.webp 1600w" sizes="100vw" width="1600" height="1067" loading="lazy" alt="Stuen i skumring sett fra kjøkkenøya" data-i18n-alt="close.alt">
+      </div>
+      <div class="close__mask" aria-hidden="true"></div>
+      <div class="close__inner">
+        <h2 class="sc-display sc-display--lg" data-sc-cue="0 1 0 0" data-i18n="close.h">Huset samler lyset.</h2>
+        <ul class="facts" data-sc-cue="0.04">
+          <li><span data-i18n="f.1a">Sted</span><span data-i18n="f.1b">Golden Mile, Marbella. Rett øst for Puente Romano.</span></li>
+          <li><span data-i18n="f.2a">Stranden</span><span data-i18n="f.2b">Ett minutt til fots.</span></li>
+          <li><span data-i18n="f.3a">Arkitekt</span><span data-i18n="f.3b">Diego Tobal, Tobal Arquitectos.</span></li>
+          <li><span data-i18n="f.4a">Materiale</span><span data-i18n="f.4b">Plantegninger og spesifikasjon ved privat visning.</span></li>
+        </ul>
+        <div class="close__cta" data-sc-cue="0.08">
+          <a class="cta cta--solid" href="#visning" data-ask data-sc-magnet="0.22" data-i18n="cta">Be om visning</a>
+          <small data-i18n="close.small">Privat presentasjon etter avtale.</small>
+        </div>
+      </div>
+      <footer class="foot">
+        <span>Los Verdiales, Marbella, Spania</span>
+        <span data-i18n="foot.r">Arkitekt Diego Tobal, Tobal Arquitectos</span>
+      </footer>
+    </div>
+  </section>
+
 </main>
+
+<dialog class="ask" id="ask">
+  <form class="ask__card" name="visning" method="POST" action="/takk.html" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="visning">
+    <p hidden><label>Ikke fyll ut: <input name="bot-field"></label></p>
+    <h3 data-i18n="ask.h">Privat visning</h3>
+    <p data-i18n="ask.p">Legg igjen navn og telefon, så tar vi kontakt for tidspunkt.</p>
+    <label><span data-i18n="ask.name">Navn</span><input name="navn" required autocomplete="name"></label>
+    <label><span data-i18n="ask.phone">Telefon</span><input name="telefon" type="tel" required autocomplete="tel"></label>
+    <label><span data-i18n="ask.email">E-post</span><input name="epost" type="email" autocomplete="email"></label>
+    <div class="ask__row">
+      <button type="button" class="ask__close" data-close data-i18n="ask.close">Lukk</button>
+      <button type="submit" class="cta" data-i18n="ask.send">Send</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="scrollcraft.js"></script>
+<script>
+(function () {
+  // ---- language: NO default, ?lang=en re-renders before mount so kinetic splits the right text
+  var EN = {
+    'cta': 'Request a viewing',
+    'hero.place': 'Golden Mile, Marbella',
+    'hero.line': 'A quiet house between stone, light and garden.',
+    'open.alt': 'Open kitchen and living room towards the garden',
+    'open.1': 'The house opens here.',
+    'open.2': 'Kitchen island, living room and garden in one line.',
+    'open.3': 'The room the day gathers in.',
+    'rooms.h': 'A softer rhythm.',
+    'rooms.p': 'The primary suite sits at the quiet end of the house. Layered textiles, low lamps, and a bath where the tub stands free in the room. Nothing here is in a hurry.',
+    'rooms.note': 'Sage, brass and limewash. The same materials throughout the house.',
+    'rooms.bedAlt': 'Primary suite with white wingback chair and low light',
+    'rooms.bathAlt': 'Bathroom with sage tub and brass vanity',
+    'mat.h': 'The materials.', 'mat.p': 'Few and good. Chosen to age.',
+    'mat.1t': 'Travertine', 'mat.1d': 'Walls and floor by the pool.',
+    'mat.2t': 'Oak', 'mat.2d': 'Kitchen fronts and shelving, pale finish.',
+    'mat.3t': 'Sage', 'mat.3d': 'Freestanding bath.',
+    'mat.4t': 'Brass', 'mat.4d': 'Fluted vanity and fittings.',
+    'mat.5t': 'Linen', 'mat.5d': 'Bedding and curtains.',
+    'mat.6t': 'Wine wall', 'mat.6d': 'Lounge on the lower level.',
+    'mat.tail': 'Full specification shared at a private viewing.',
+    'well.h': 'A retreat within the house.',
+    'well.p': 'Pool, gym and spa behind glass on the lower level. Water, light and recovery, without leaving the house.',
+    'well.alt': 'Indoor pool and gym behind glass',
+    'hush': 'Then the sun goes down.',
+    'peak.h': 'Evening settles over the garden.',
+    'peak.p': 'The pool glows turquoise, the terrace fills, and the house stands lit behind the glass.',
+    'close.h': 'The house gathers its light.',
+    'close.alt': 'Living room at dusk seen from the kitchen island',
+    'f.1a': 'Location', 'f.1b': 'Golden Mile, Marbella. Directly east of Puente Romano.',
+    'f.2a': 'The beach', 'f.2b': 'One minute on foot.',
+    'f.3a': 'Architect', 'f.3b': 'Diego Tobal, Tobal Arquitectos.',
+    'f.4a': 'Material', 'f.4b': 'Floor plans and specification at a private viewing.',
+    'close.small': 'Private presentation by appointment.',
+    'foot.r': 'Architect Diego Tobal, Tobal Arquitectos',
+    'ask.h': 'Private viewing', 'ask.p': 'Leave your name and phone number and we will be in touch to arrange a time.',
+    'ask.name': 'Name', 'ask.phone': 'Phone', 'ask.email': 'Email', 'ask.close': 'Close', 'ask.send': 'Send'
+  };
+  var TIMES_EN = null;
+  var lang = /[?&]lang=en\b/.test(location.search) ? 'en' : 'no';
+  if (lang === 'en') {
+    document.documentElement.lang = 'en';
+    document.title = 'Los Verdiales, Marbella';
+    document.querySelectorAll('[data-i18n]').forEach(function (el) { var k = el.getAttribute('data-i18n'); if (EN[k]) el.textContent = EN[k]; });
+    document.querySelectorAll('[data-i18n-alt]').forEach(function (el) { var k = el.getAttribute('data-i18n-alt'); if (EN[k]) el.alt = EN[k]; });
+    var ll = document.querySelector('[data-lang-link]'); ll.textContent = 'NO'; ll.href = location.pathname;
+  }
+
+  // ---- pick the clip the browser can decode; the engine reads data-sc-src
+  var probe = document.createElement('video');
+  var mp4ok = !!probe.canPlayType('video/mp4; codecs="avc1.640028"');
+  document.querySelectorAll('video[data-sc-scrub]').forEach(function (v) {
+    v.setAttribute('data-sc-src', mp4ok ? v.getAttribute('data-lv-mp4') : v.getAttribute('data-lv-webm'));
+  });
+
+  ScrollCraft.mount(document.body);
+
+  // ---- the viewing request
+  var dlg = document.getElementById('ask');
+  document.querySelectorAll('[data-ask]').forEach(function (a) {
+    a.addEventListener('click', function (e) { if (dlg && dlg.showModal) { e.preventDefault(); dlg.showModal(); } });
+  });
+  dlg.querySelector('[data-close]').addEventListener('click', function () { dlg.close(); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+
+  // ---- the signature: the day is the scroll. One sun over a horizon, seven
+  // stops that are the rooms, the photographs graded by the hour, the bar
+  // re-inked as night comes. Page-scroll driven, so it outlives every act.
+  var stops = Array.prototype.slice.call(document.querySelectorAll('[data-lv-stop]'));
+  var sun = document.getElementById('sun'), glow = document.getElementById('sunGlow');
+  var label = document.getElementById('skyLabel'), bar = document.getElementById('bar');
+  var stopsG = document.getElementById('stops');
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var X0 = 6, X1 = 214, HY = 28;
+  // quadratic arc M6 28 Q110 -14 214 28 evaluated at u in [0,1]
+  function arc(u) { var mt = 1 - u; return { x: mt*mt*X0 + 2*mt*u*110 + u*u*X1, y: mt*mt*HY + 2*mt*u*(-14) + u*u*HY }; }
+  // the sun sets at the start of the peak; u maps page fraction so that u=1 lands there
+  function peakStart() { var p = document.querySelector('.peak'); return p ? p.getBoundingClientRect().top + scrollY : innerHeight; }
+  var maxScroll = 1, setAt = 0.72, dots = [];
+  function layout() {
+    maxScroll = Math.max(document.documentElement.scrollHeight - innerHeight, 1);
+    setAt = Math.min(Math.max((peakStart() - innerHeight * 0.2) / maxScroll, 0.5), 0.95);
+    stopsG.innerHTML = '';
+    dots = stops.map(function (s, i) {
+      var top = s.getBoundingClientRect().top + scrollY;
+      var t = Math.min(top / maxScroll, 1);
+      var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      var u = Math.min(t / setAt, 1);
+      var pt = arc(u);
+      var pastSet = t > setAt;
+      // stops after sunset sit on the horizon, to the right of where the sun went down
+      c.setAttribute('cx', pastSet ? (X1 - 30 + (t - setAt) / (1 - setAt) * 30) : pt.x);
+      c.setAttribute('cy', pastSet ? HY : pt.y);
+      c.setAttribute('r', 1.9);
+      c.setAttribute('class', 'sky__stop');
+      c.setAttribute('tabindex', '-1');
+      c.addEventListener('click', function () { s.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); });
+      stopsG.appendChild(c);
+      return { el: c, sec: s, t: t };
+    });
+  }
+  function lerp(a, b, k) { return a + (b - a) * k; }
+  function tint(t) {
+    // morning clear (0), afternoon gold (0.45), evening amber (0.7), night blue (1)
+    var k = [ [0.0, 255,235,215, 0.00], [0.42, 255,214,160, 0.07], [0.68, 240,170,110, 0.10], [0.80, 90,90,130, 0.11], [1.0, 40,50,90, 0.12] ];
+    for (var i = 1; i < k.length; i++) if (t <= k[i][0]) {
+      var a = k[i-1], b = k[i], u = (t - a[0]) / (b[0] - a[0]);
+      return 'rgba(' + Math.round(lerp(a[1],b[1],u)) + ',' + Math.round(lerp(a[2],b[2],u)) + ',' + Math.round(lerp(a[3],b[3],u)) + ',' + lerp(a[4],b[4],u).toFixed(3) + ')';
+    }
+    return 'rgba(40,50,90,0.12)';
+  }
+  var lastNight = null, lastIdx = -1;
+  function paint() {
+    var t = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+    var u = Math.min(t / setAt, 1);
+    var pt = arc(u);
+    // below the horizon after sunset: the sun sinks and fades
+    var sink = t > setAt ? Math.min((t - setAt) / 0.08, 1) : 0;
+    sun.setAttribute('cx', pt.x); sun.setAttribute('cy', pt.y + sink * 9);
+    glow.setAttribute('cx', pt.x); glow.setAttribute('cy', pt.y + sink * 9);
+    sun.style.opacity = 1 - sink; glow.style.opacity = 0.35 * (1 - sink) + 0.15 * (1 - Math.abs(u - 0.5) * 2) * (1 - sink);
+    glow.setAttribute('r', 7 + 6 * u * (1 - sink));
+    document.documentElement.style.setProperty('--lv-tint', tint(t));
+    // the bar re-inks when the ground is dark: read the drifted canvas
+    var cv = getComputedStyle(document.documentElement).getPropertyValue('--sc-canvas').trim();
+    var m = /^#([0-9a-f]{6})$/i.exec(cv), night = false;
+    if (m) { var n = parseInt(m[1], 16); var L = 0.2126*((n>>16)&255) + 0.7152*((n>>8)&255) + 0.0722*(n&255); night = L < 128; }
+    else { night = t > 0.5; }
+    if (night !== lastNight) { lastNight = night; bar.classList.toggle('is-night', night); bar.classList.toggle('is-day', !night); document.body.classList.toggle('is-night', night); document.body.classList.toggle('is-day', !night); }
+    // which room
+    var idx = 0; for (var i = 0; i < dots.length; i++) if (t >= dots[i].t - 0.02) idx = i;
+    if (idx !== lastIdx) { lastIdx = idx; dots.forEach(function (d, i) { d.el.classList.toggle('is-here', i === idx); });
+      var sec = stops[idx]; label.textContent = sec.getAttribute('data-lv-time'); }
+  }
+  var raf = 0;
+  function onScroll() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; paint(); }); }
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', function () { layout(); paint(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { layout(); paint(); });
+  layout(); paint();
+  setTimeout(function () { layout(); paint(); }, 800);
+})();
+</script>
 </body>
 </html>
