@@ -1,1 +1,0 @@
-window.LV_INTERIOR_IMAGES = [];
